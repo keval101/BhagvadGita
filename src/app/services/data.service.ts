@@ -7,20 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  API_KEY = 'd9b0b345e427dddfa';
-  URL = 'https://bhagavadgitaapi.in'
-  headers = {
-    'X-API-KEY': this.API_KEY
-  }
-
   constructor(private _http: HttpClient) { }
 
-  getSloks(): Observable<any> {
-    return this._http.get(`slok`,);
+  //get all chapters
+  getAllChapters(): Observable<any> {
+    return this._http.get(`chapters/?limit=18`,);
   }
 
-  getGitaSvg(): Observable<any> {
-    return this._http.get(`gita.svg?ch=1&sl=3`, {responseType: 'text'});
+  //get particular chapter
+  getChapter(chapter: number): Observable<any> {
+    return this._http.get(`chapters/${chapter}/`,);
   }
 
+  //get all verse of particular chapter
+  getAllVerses(chapter: number): Observable<any> {
+    return this._http.get(`chapters/${chapter}/verses/`,);
+  }
+
+  //get particular verse
+  getVerse(chapter: number, verse: number): Observable<any> {
+    return this._http.get(`chapters/${chapter}/verses/${verse}`,);
+  }
 }

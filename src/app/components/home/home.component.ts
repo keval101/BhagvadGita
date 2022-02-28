@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  svg: any;
-  constructor(private _dataService: DataService, private sanitizer: DomSanitizer) { }
-
+  constructor(private _dataService: DataService) { }
   ngOnInit(): void {
-    this._dataService.getSloks().subscribe(
-      response => console.log(response)
-    );
+    this._dataService.getAllChapters().subscribe(
+      res => console.log(res)
+    )
+    this._dataService.getChapter(1).subscribe(
+      res => console.log(res)
+    )
   }
 
 }
