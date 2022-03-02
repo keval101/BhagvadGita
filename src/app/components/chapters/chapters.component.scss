@@ -1,0 +1,39 @@
+
+.chapters {
+    &__container {
+        @apply flex w-screen h-screen justify-center items-center flex-wrap
+    }
+    &__card {
+        @apply p-4 m-4 rounded-lg flex justify-center flex-col;
+        background-color: #fff;
+        width: 360px;
+        height: 125px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease-in;
+        &:hover {
+            @apply cursor-pointer;
+            transform: translatey(-10px);
+            background-color: var(--primary-ligh-color);
+            color: #fff !important;
+            transition: all 0.3s ease-in;
+        }
+
+        &:hover .chapters__text, 
+        &:hover .chapters__verses {
+            color: #fff;
+            transition: all 0.3s ease-in;
+        }
+    }
+
+    &__text,
+    &__verses{
+        @apply text-gray-500;
+        font-size: 14px;
+        transition: all 0.3s ease-in;
+    }
+
+    &__title {
+        @apply font-normal;
+        font-size: 24px;
+    }
+}

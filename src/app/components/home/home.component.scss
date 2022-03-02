@@ -1,0 +1,16 @@
+.home {
+    // background-image: url('../../../assets/background.png');
+    // background-position: center;
+    // background-size: cover;
+    @apply flex justify-end items-end;
+    .img {
+        width: 800px;
+        height: 550px;
+        // background-color: rgba(234, 124, 5, 0.1);
+        img {
+            opacity: 0.3;
+            width: 100%;
+            height: 100%
+        }
+    }
+}

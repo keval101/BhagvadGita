@@ -1,4 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* tailwind css */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Fonts  */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary--color: #ea7c05;
+  --primary-ligh-color: #feb626;
+  --primary-dark-color: #d55900;
+
+  --background-color: #f6f9fc;
+}
+
+.light-theme {
+  --background-color: #f6f9fc;
+  --text-color: #1a1a1a;
+}
+
+.dark-theme {
+  --background-color: #1a1a1a;
+  --text-color: #f5f5f5;
+}
+
+* {
+  @apply box-border m-0 p-0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}

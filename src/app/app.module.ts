@@ -6,11 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { APIinterceptorService } from './services/apiinterceptor.service'
+import { APIinterceptorService } from './services/apiinterceptor.service';
+import { ChaptersComponent } from './components/chapters/chapters.component'
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ChaptersComponent,
   ],
   imports: [
     BrowserModule,
