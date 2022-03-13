@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { DataService } from '../../services/data.service';
 export class ChaptersComponent implements OnInit {
 
   totalChapters = [];
-  constructor(private _dataService: DataService) { }
+  constructor(private _dataService: DataService, private _router: Router) { }
 
   ngOnInit(): void {
     this._dataService.getAllChapters().subscribe(
@@ -19,4 +20,8 @@ export class ChaptersComponent implements OnInit {
       })
   }
 
+  gotoChapter(id: number): void {
+    console.log(id);
+    this._router.navigate(['chapter', id])
+  }
 }

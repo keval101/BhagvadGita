@@ -35,3 +35,12 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
 }
+
+.content-container {
+  @apply mx-auto;
+  width: 80%;
+}
+
+.section {
+  @apply py-5;
+}

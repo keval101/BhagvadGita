@@ -1,18 +1,12 @@
-<!-- <div class="chapter__container">
-    <div class="chapter__card" *ngFor="let chapter of totalChapters">
-        <div class="chapter__card-number">{{chapter.id}}</div>
-        <div class="chapter__card-text">
-            {{chapter.name_translated}}
-        </div>
-    </div>
-</div> -->
-
-<div class="chapters__container">
-    <div class="chapters__card" *ngFor="let chapter of totalChapters">
-        <h3 class="chapters__title">{{chapter.name_translated}}</h3>
-        <div class="flex">
-            <span class="chapters__text mr-2">Chapter {{chapter.id}},</span>
-            <span class="chapters__verses">Verses {{chapter.verses_count}}</span>
+<div class="section container section content-container">
+    <h1 class="title">Chapter</h1>
+    <div class="chapters__container">
+        <div class="chapters__card" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
+            <h3 class="chapters__title">{{chapter.name_translated}}</h3>
+            <div class="flex">
+                <span class="chapters__text mr-2">Chapter {{chapter.id}},</span>
+                <span class="chapters__verses">Verses {{chapter.verses_count}}</span>
+            </div>
         </div>
     </div>
 </div>

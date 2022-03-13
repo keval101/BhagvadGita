@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { APIinterceptorService } from './services/apiinterceptor.service';
-import { ChaptersComponent } from './components/chapters/chapters.component'
+import { ChaptersComponent } from './components/chapters/chapters.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ChapterDescriptionComponent } from './components/chapter-description/chapter-description.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ChaptersComponent,
+    NavbarComponent,
+    ChapterDescriptionComponent,
   ],
   imports: [
     BrowserModule,

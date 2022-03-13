@@ -1,0 +1,25 @@
+header {
+    @apply shadow-sm;
+}
+.navbar {
+    height: 60px;
+    @apply flex items-center justify-end;
+    &__nav {
+        @apply flex;
+
+        &-item {
+            &:not(:last-child) {
+                @apply mr-10;
+            }
+            transition: color 0.2s ease;
+            &:hover,&:active {
+                color: var(--primary--color);
+                transition: color 0.2s ease;
+            }
+            .active {
+                color: var(--primary--color);
+                transition: color 0.2s ease;
+            }
+        }
+    }
+}
