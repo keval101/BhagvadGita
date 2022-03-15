@@ -1,16 +1,53 @@
 
-.chapters {
-    &__container {
-        // @apply flex flex-wrap;
-        @apply grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        @screen xl-max {
-            grid-template-columns: 1fr 1fr 1fr;
+.title {
+    @apply mb-14 text-center relative;
+    font-size: 60px;
+    line-height: 40px;
+    color: var(--primary--color);
+
+    @screen sm-max {
+        @apply mb-5;
+        font-size: 24px;
+    }
+
+    &-text {
+        @apply relative;
+        &::after,
+        &::before {
+            @apply rounded-sm absolute;
+            content: '';
+            background-color: var(--primary--color);
+            width: 80px;
+            height: 3px;
+            top: 50%;
+
+            @screen sm-max {
+                width: 50px;
+                height: 2px;
+            }
+        }
+        &::after {
+            left: -100px;
+            @screen sm-max {
+                left: -65px
+            }
+        }
+        &::before {
+            right: -100px;
+            @screen sm-max {
+                right: -65px;
+            }
         }
     }
+}
+.chapters {
+    &__container {
+        @apply grid justify-center;
+        grid-template-columns: (repeat(auto-fill, 360px));
+        grid-gap: 2rem;
+    }
     &__card {
-        @apply p-4 m-4 rounded-lg flex justify-center flex-col;
+        @apply p-4 rounded-lg flex justify-center flex-col;
         background-color: #fff;
         width: 360px;
         height: 125px;
@@ -28,6 +65,10 @@
         &:hover .chapters__verses {
             color: #fff;
             transition: all 0.3s ease-in;
+        }
+
+        @screen sm-max {
+            @apply w-auto;
         }
     }
 

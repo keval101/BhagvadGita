@@ -1,5 +1,7 @@
-<div class="section container section content-container">
-    <h1 class="title">Chapter</h1>
+<div class="section__container section content-container">
+    <h1 class="title">
+        <span class="title-text">Chapters</span>
+    </h1>
     <div class="chapters__container">
         <div class="chapters__card" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
             <h3 class="chapters__title">{{chapter.name_translated}}</h3>
