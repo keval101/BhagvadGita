@@ -9,12 +9,21 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ChapterDescriptionComponent implements OnInit {
   chapterID: any;
-
-  constructor(private _dataService: DataService, private _activatedRoute: ActivatedRoute) { }
+  chapter: any;
+  isResponse: boolean;
+  constructor(private _dataService: DataService, private _activatedRoute: ActivatedRoute) { 
+    this.isResponse = false;
+  }
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe( params => this.chapterID = params['id'] );
     this._dataService.getChapter(this.chapterID).subscribe( response => {
+      this.isResponse = true;
+      this.chapter = response;
+      console.log(this.chapter);
+    })
+
+    this._dataService.getAllVerses(this.chapterID).subscribe( response => {
       console.log(response);
     })
   }

@@ -1,1 +1,11 @@
-<p>chapter-description works!</p>
+<div class="section content-container">
+    <div class="chap__detail" *ngIf="isResponse">
+        <div class="chap__title">
+            <h1>{{chapter.name_translated}}</h1>
+            <p class="ml-2">(Chapter-{{chapter.chapter_number}})</p>   
+        </div>
+        <!-- <div class="chap__title">{{chapter.name}}</div> -->
+        <div class="chap__summary">{{chapter.chapter_summary}}</div>
+        <!-- <div class="chap__summary">{{chapter.chapter_summary_hindi}}</div> -->
+    </div>
+</div>

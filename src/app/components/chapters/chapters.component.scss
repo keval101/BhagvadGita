@@ -43,7 +43,7 @@
 .chapters {
     &__container {
         @apply grid justify-center;
-        grid-template-columns: (repeat(auto-fill, 360px));
+        grid-template-columns: (repeat(auto-fill, 355px));
         grid-gap: 2rem;
     }
     &__card {

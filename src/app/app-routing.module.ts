@@ -5,7 +5,7 @@ import { ChaptersComponent } from './components/chapters/chapters.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
   { path: 'chapters', component: ChaptersComponent},
   { path: 'chapter/:id', component: ChapterDescriptionComponent},
