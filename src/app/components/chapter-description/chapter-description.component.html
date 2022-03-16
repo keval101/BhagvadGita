@@ -9,7 +9,10 @@
         <!-- <div class="chap__summary">{{chapter.chapter_summary_hindi}}</div> -->
     </div>
 
-    <div *ngFor="let verse of verses" style="white-space: pre-line;">
-        {{verse.text}}
+    <div class="verse-section">
+        <div *ngFor="let verse of verses" style="white-space: pre-line;" class="verse-box">
+            <div class="verse-box-title">Verse {{verse.verse_number}}</div>
+            <div class="verse-box-text">{{verse.text}}</div>
+        </div>
     </div>
 </div>

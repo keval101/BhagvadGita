@@ -15,7 +15,36 @@
     }
 
     &__summary {
-        font-size: 16px;
+        font-size: 18px;
         line-height: 32px;
+    }
+}
+
+.verse-section {
+    @apply grid justify-center mt-10;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-gap: 30px;
+}
+.verse-box {
+    @apply flex flex-col shadow-md text-center rounded-sm cursor-pointer;
+    width: 350px;
+    height: 165px;
+    line-height: 16px;
+    border: 1px solid var(--primary-light-color);
+    transition: all 0.2s ease-in;
+
+    &-title {
+        @apply w-full py-3 text-white font-semibold border-gray-200 flex items-center justify-center;
+        border-bottom:  1px solid rgba(0,0,0,0.1);
+        background-color: var(--primary-light-color);
+    }
+
+    &-text {
+        @apply py-5 flex flex-grow justify-center items-center;
+    }
+
+    &:hover {
+        background-color: rgba($color: #feb626, $alpha: 0.1);
+        transition: all 0.2s ease-in;
     }
 }
