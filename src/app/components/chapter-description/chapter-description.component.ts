@@ -11,6 +11,7 @@ export class ChapterDescriptionComponent implements OnInit {
   chapterID: any;
   chapter: any;
   isResponse: boolean;
+  verses = [];
   constructor(private _dataService: DataService, private _activatedRoute: ActivatedRoute) { 
     this.isResponse = false;
   }
@@ -25,6 +26,8 @@ export class ChapterDescriptionComponent implements OnInit {
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
       console.log(response);
+      this.verses = response;
+      console.log(this.verses)
     })
   }
 
