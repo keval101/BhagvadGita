@@ -1,8 +1,8 @@
 <div class="section__container section content-container">
     <h1 class="title">
-        <span class="title-text">Chapters</span>
+        <span class="title__text">Chapters</span>
     </h1>
-    <div class="chapters__container">
+    <div class="chapters__container" *ngIf="isResponse">
         <div class="chapters__card" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
             <h3 class="chapters__title">{{chapter.name_translated}}</h3>
             <div class="flex">
@@ -11,4 +11,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Loading Spinner -->
+<div class="loading-spinner" *ngIf="!isResponse">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
 </div>

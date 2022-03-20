@@ -1,0 +1,49 @@
+<div class="section verse content-container">
+    <!-- loading-spinner -->
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" *ngIf="!isResponse">
+        <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+    </div>
+
+    <div class="flex items-center justify-center" *ngIf="isResponse">
+
+        <button pButton pRipple type="button" icon="pi pi-angle-left" class="p-button-rounded left-icon" (click)="previousSloka()"></button>
+
+        <div class="verse__card relative" *ngIf="isResponse">
+            <img src="../../../assets/krishnaArjunaa.jpg" alt="krishna-Arjuna" class="verse__card-image">
+    
+            <h1 class="verse__card-title">|| <span class="font-bold">श्रीमद्भगवद्‌ गीता &nbsp;{{verse.chapter_number}}.{{verse.verse_number}}</span> ||</h1>
+    
+            <p class="verse__card-slok">
+                {{verse.text}}
+            </p>
+    
+            <p class="verse__card-transliteration">
+                {{verse.transliteration}}
+            </p>
+    
+            <div class="verse__card-meaning">
+                <h2 class="verse__card-meaning--title">Word meanings</h2>
+                <p class="verse__card-meaning--text">{{verse.word_meanings}}</p>
+            </div>
+
+            <p class="footer-text">(Bhagvad Gita, Chapter {{verse.chapter_number}}, Shloka {{verse.verse_number}})</p>
+            <div class="mobile-button">
+                <button pButton pRipple type="button" icon="pi pi-angle-left" class="p-button-rounded" (click)="previousSloka()"></button>
+                <button pButton pRipple type="button" icon="pi pi-angle-right" class="p-button-rounded" (click)="nextSloka()"></button>
+            </div>
+        </div>
+
+        <button pButton pRipple type="button" icon="pi pi-angle-right" class="p-button-rounded right-icon" (click)="nextSloka()"></button>
+
+    </div>
+
+    <div class="summary" *ngIf="isResponse">
+        <h1 class="summary__title">Summary</h1>
+
+        <div class="summary__card" *ngFor="let summary of summaries">
+            <p class="summary__card-description">{{summary.description}}</p>
+            <p class="summary__card-author"> - {{summary.author_name}}</p>
+        </div>
+    </div>
+</div>

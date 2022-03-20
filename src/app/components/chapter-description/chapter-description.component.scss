@@ -1,12 +1,32 @@
-.chap {
+.chapter {
+    @apply pt-16;
+
+    &__detail {
+        @apply flex flex-col justify-center;
+    }
+
     &__title {
-        @apply flex items-baseline pb-4 mb-8 border-b-2 border-gray-100;
+        @apply flex items-baseline pb-4 mb-6;
+
+        @screen sm-max {
+            @apply flex-col mb-2;
+        }
+
         h1 {
             @apply font-semibold;
-            font-size: 44px;
+            font-size: 54px;
             line-height: 32px;
             color: var(--primary--color);
+
+            @screen md-max {
+                font-size: 44px;
+            }
+
+            @screen sm-max {
+                font-size: 30px;
+            }
         }
+
         p {
             font-size: 14px;
             line-height: 24px;
@@ -17,34 +37,109 @@
     &__summary {
         font-size: 18px;
         line-height: 32px;
+
+        @screen sm-max {
+            font-size: 12px;
+            line-height: 20px;
+        }
+    }
+
+    .loading-spinner {
+        @apply mt-20;
+        height: auto;
     }
 }
 
-.verse-section {
+.verses {
     @apply grid justify-center mt-10;
     grid-template-columns: repeat(auto-fill, 350px);
     grid-gap: 30px;
-}
-.verse-box {
-    @apply flex flex-col shadow-md text-center rounded-sm cursor-pointer;
-    width: 350px;
-    height: 165px;
-    line-height: 16px;
-    border: 1px solid var(--primary-light-color);
-    transition: all 0.2s ease-in;
 
-    &-title {
-        @apply w-full py-3 text-white font-semibold border-gray-200 flex items-center justify-center;
-        border-bottom:  1px solid rgba(0,0,0,0.1);
-        background-color: var(--primary-light-color);
+    @screen md-max {
+        grid-template-columns: repeat(auto-fill, 310px);
     }
 
-    &-text {
-        @apply py-5 flex flex-grow justify-center items-center;
+    @screen sm-max {
+        grid-template-columns: repeat(auto-fill, 1fr);
     }
 
-    &:hover {
-        background-color: rgba($color: #feb626, $alpha: 0.1);
+    &__box {
+        @apply flex flex-col shadow-md text-center rounded-md cursor-pointer;
+        // width: 350px;
+        min-height: 165px;
+        max-height: 200px;
+        line-height: 16px;
+        border: 1px solid var(--primary-light-color);
         transition: all 0.2s ease-in;
+    
+        &-title {
+            @apply w-full py-3 text-white font-semibold border-gray-200 flex items-center justify-center;
+            border-bottom:  1px solid rgba(0,0,0,0.1);
+            background-color: var(--primary-light-color);
+        }
+    
+        &-text {
+            @apply py-5 flex flex-grow justify-center items-center;
+            line-height: 16px;
+        }
+    
+        &:hover {
+            background-color: rgba($color: #feb626, $alpha: 0.1);
+            transform: scale(1.05);
+            transition: all 0.2s ease-in;
+        }
+    }
+}
+
+
+.krishna-image {
+    width: 350px;
+}
+
+//custom-style for pagination-controll
+
+.pagination {
+    @apply w-full mt-12;
+    .ngx-pagination {
+        @apply flex justify-center;
+
+        li {
+            @apply mx-2 flex justify-center items-center rounded-full;
+            width: 35px;
+            height: 35px;
+            transition: background-color 0.2s ease-in;
+            
+            @screen sm-max {
+                width: 32px;
+                height: 28px;
+            }
+            &:hover {
+                @apply bg-gray-200;
+                color: var(--text-color);
+                transition: background-color 0.2s ease-in;
+            }
+        }
+        a:hover {
+            @apply bg-transparent;
+            transition: background-color 0.2s ease-in;
+        }
+        .pagination-next,
+        .pagination-previous {
+            @apply flex justify-center items-center;
+        }
+        .pagination-next.disabled::after,
+        .pagination-next a::after {
+            @apply ml-0;
+        }
+        .pagination-previous a::before,
+        .pagination-previous.disabled::before {
+            @apply mr-0;
+        }
+        .small-screen {
+            @apply hidden;
+        }
+        .current {
+            background-color: var(--primary--color);
+        }
     }
 }
