@@ -26,6 +26,6 @@ export class DataService {
 
   //get particular verse
   getVerse(chapter: number, verse: number): Observable<any> {
-    return this._http.get(`chapters/${chapter}/verses/${verse}`,);
+    return this._http.get(`chapters/${chapter}/verses/${verse}/`,);
   }
 }

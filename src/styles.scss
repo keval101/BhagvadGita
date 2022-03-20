@@ -39,8 +39,59 @@ body {
 .content-container {
   @apply mx-auto;
   width: 80%;
+
+  @media screen and (max-width: 1366px){
+    width: 88%;
+  }
 }
 
 .section {
-  @apply py-5;
+  @apply pt-5 pb-10;
+}
+
+
+.loading-spinner {
+  @apply flex justify-center items-center;
+  height: 100vh;
+  .custom-spinner .p-progress-spinner-circle {
+      animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
+  }
+}
+
+@keyframes custom-progress-spinner-color {
+  100%,
+  0% {
+      stroke: var(--primary--color);
+  }
+  40% {
+      stroke: var(--primary-light-color);
+  }
+  66% {
+      stroke: var(--primary--color);
+  }
+  80%,
+  90% {
+      stroke: var(--primary-dark-color);
+  }
+}
+
+
+@keyframes custom-progress-spinner-dash {
+  0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+  }
+  50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+  }
+  100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+  }
+}
+
+::selection {
+  background-color: var(--primary--color);
+  color: #f5f5f5;
 }
