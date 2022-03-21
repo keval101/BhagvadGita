@@ -60,7 +60,7 @@
     }
 
     @screen sm-max {
-        grid-template-columns: repeat(auto-fill, 1fr);
+        grid-template-columns: repeat(auto-fill, 100%);
     }
 
     &__box {
