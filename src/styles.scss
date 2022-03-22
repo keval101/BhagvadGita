@@ -99,3 +99,21 @@ body {
   background-color: var(--primary--color);
   color: #f5f5f5;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  height: calc(100% - 60px);
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary--color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary--color); 
+}

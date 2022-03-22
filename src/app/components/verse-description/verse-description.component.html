@@ -40,9 +40,16 @@
     <div class="summary" *ngIf="isResponse">
         <h1 class="summary__title">Summary</h1>
 
-        <div class="summary__card" *ngFor="let summary of summaries">
-            <p class="summary__card-description">{{summary.description}}</p>
-            <p class="summary__card-author"> - {{summary.author_name}}</p>
+        <div class="summary__container">
+            <div class="summary__card" *ngFor="let summary of summaries">
+                <p class="summary__card-description">{{summary.description}}</p>
+                <p class="summary__card-read-text" (click)="readSummary(summary.description, summary.author_name)"> Read More</p>
+            </div>
         </div>
     </div>
 </div>
+
+<p-dialog header="Summary" [(visible)]="isSummaryOpen" [style]="{width: '50vw'}" class="summary__dialog" [draggable]="false">
+    <p>{{selectedSummary.description}}</p>
+    <p class="summary__card-author">- {{selectedSummary.author}}</p>
+</p-dialog>

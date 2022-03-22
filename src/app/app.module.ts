@@ -10,15 +10,16 @@ import { APIinterceptorService } from './services/apiinterceptor.service';
 import { ChaptersComponent } from './components/chapters/chapters.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChapterDescriptionComponent } from './components/chapter-description/chapter-description.component'
+import { FooterComponent } from './components/footer/footer.component';
+import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
 
 //pagination-library
 import { NgxPaginationModule } from 'ngx-pagination';
 
 //primeng
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
 import {ButtonModule} from 'primeng/button';
-import { FooterComponent } from './components/footer/footer.component';
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     ProgressSpinnerModule,
     NgxPaginationModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

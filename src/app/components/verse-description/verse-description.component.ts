@@ -17,7 +17,11 @@ export class VerseDescriptionComponent implements OnInit {
   isResponse: boolean;
   isChangeVerse = new Subject()
   summaries = [];
-
+  selectedSummary: {description: string, author: string} = {
+    description: '',
+    author: ''
+  }
+  isSummaryOpen: boolean;
   constructor(private _activatedRoute: ActivatedRoute,
               private _router: Router,
               private _dataService: DataService) {
@@ -72,5 +76,14 @@ export class VerseDescriptionComponent implements OnInit {
             }
           })
       })
+  }
+
+  readSummary(summary_description, summary_author): void {
+    console.log(summary_description, summary_author);
+    this.selectedSummary = {
+      description: summary_description,
+      author: summary_author
+    }
+    this.isSummaryOpen = true
   }
 }
