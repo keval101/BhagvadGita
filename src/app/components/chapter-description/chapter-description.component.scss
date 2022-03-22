@@ -18,8 +18,8 @@
             line-height: 32px;
             color: var(--primary--color);
 
-            @screen md-max {
-                font-size: 44px;
+            @screen 2xl-max {
+                font-size: 45px;
             }
 
             @screen sm-max {
@@ -37,6 +37,10 @@
     &__summary {
         font-size: 18px;
         line-height: 32px;
+
+        @screen 2xl-max {
+            font-size: 17px;
+        }
 
         @screen sm-max {
             font-size: 12px;

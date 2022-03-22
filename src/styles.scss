@@ -46,7 +46,11 @@ body {
 }
 
 .section {
-  @apply pt-5 pb-10;
+  @apply pt-20 pb-10;
+
+  @screen sm-max {
+    @apply pt-10;
+  }
 }
 
 

@@ -45,11 +45,19 @@
         @apply grid justify-center;
         grid-template-columns: (repeat(auto-fill, 355px));
         grid-gap: 2rem;
+
+        @screen md-max {
+            grid-template-columns: (repeat(auto-fill, 310px));
+        }
+
+        @screen sm-max {
+            grid-template-columns: (repeat(auto-fill, 100%));
+        }
     }
     &__card {
         @apply p-4 rounded-lg flex justify-center flex-col;
         background-color: #fff;
-        width: 360px;
+        // width: 360px;
         height: 125px;
         box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         transition: all 0.3s ease-in;

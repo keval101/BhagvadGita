@@ -18,21 +18,20 @@ export class VerseDescriptionComponent implements OnInit {
   isChangeVerse = new Subject()
   summaries = [];
 
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _dataService: DataService) {
+  constructor(private _activatedRoute: ActivatedRoute,
+              private _router: Router,
+              private _dataService: DataService) {
 
     this.isChangeVerse.subscribe(
       res => {
         setTimeout(() => {
           this.getVerse();
         }, 500);
-        console.log('veres change')
-      }
-    )
+      })
    }
 
   ngOnInit(): void {
     this.getVerse();
-    window.scrollTo(0, 0);
   }
 
   previousSloka(): void {
@@ -54,23 +53,24 @@ export class VerseDescriptionComponent implements OnInit {
       params => {
         this.verseNumber = params['verseId'];
         this.chapterNumber = params['chapId'];
-      }
-    )
+      })
 
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        console.log(res)
         this.isResponse = true;
+          if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
+            res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {
+            res.text = res.text.replace('\n\n', '');
+            res.text = res.text.replace('।\n\n', '।');
+            res.text = res.text.replace('।', '।\n\n');
+          }
         this.verse.commentaries.map(
           summary => {
             if(summary.language === 'hindi' || summary.language === 'english') {
               this.summaries.push(summary);
             }
-          }
-        )
-        console.log(this.summaries);
-      }
-    )
+          })
+      })
   }
 }

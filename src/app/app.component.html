@@ -1,5 +1,5 @@
-<div class="navigation">
-    <app-navbar></app-navbar>
+<div class="navigation" [ngClass]="{'open-menu': isMenuOpen}">
+    <app-navbar (closeSidebar)="openMenu()"></app-navbar>
 </div>
 
 <div class="content">
@@ -9,3 +9,9 @@
 <div class="footer">
     <app-footer></app-footer>
 </div>
+
+<button class="menu-toggle" *ngIf="isMobileScreen" (click)="openMenu()" [ngClass]="{paddingClass: isMenuOpen}">
+    <span class="line" [ngClass]="{'line1': isMenuOpen}"></span>
+    <span class="line" [ngClass]="{'line2': isMenuOpen}"></span>
+    <span class="line" [ngClass]="{'line3': isMenuOpen}"></span>
+</button>

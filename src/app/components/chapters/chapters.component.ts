@@ -21,12 +21,10 @@ export class ChaptersComponent implements OnInit {
       response => {
         this.totalChapters = response;
         this.isResponse = true;
-        console.log(response)
       })
   }
 
   gotoChapter(id: number): void {
-    console.log(id);
     this._router.navigate(['chapter', id])
   }
 }

@@ -4,18 +4,36 @@ header {
 }
 
 .navbar {
-    height: 60px;
+    min-height: 60px;
     @apply flex items-center justify-end;
+
+    @screen sm-max {
+        @apply justify-center py-7 h-screen;
+    }
+
+
     &__nav {
         @apply flex;
 
+        @screen sm-max {
+            @apply flex-col;
+        }
         &-item {
-            @apply relative;
+            @apply relative mr-7;
             color: #fff;
             transition: color 0.8s ease;
+
+            @screen sm-max {
+                @apply text-3xl;
+            }
+
             &:not(:last-child) {
                 @apply mr-7;
+                @screen sm-max {
+                    @apply mr-0 mb-7;
+                }
             }
+
             &::before {
                 @apply bg-white absolute rounded-sm;
                 content: '';
@@ -24,6 +42,7 @@ header {
                 bottom: -10px;
                 left: 0;
             }
+
             &:hover::before,&:active::before {
                 width: 100%;
                 transition: width 0.8s ease;
@@ -32,11 +51,16 @@ header {
             .active {
                 @apply rounded-sm;
                 border-bottom: 2px solid #fff;
-                transition: color 0.8s ease;
+                transition: color 0.8s ease 0.8s;
             }
 
             &-link {
                 padding: 0 14px 9px 14px;
+
+                @screen sm-max {
+                    @apply pl-0;
+                    padding-bottom: 6px;
+                }
             }
         }
     }

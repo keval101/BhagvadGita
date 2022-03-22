@@ -42,6 +42,15 @@ export class ChapterDescriptionComponent implements OnInit {
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
       this.verses = response;
       this.isResponse = true;
+      this.verses.map(
+        response => {
+          if(response.chapter_number === 12 || response.chapter_number === 13 || response.chapter_number === 14 ||
+            response.chapter_number === 15 || response.chapter_number === 16 || 
+            response.chapter_number === 17 || response.chapter_number === 18) {
+            response.text = response.text.replace('\n\n', '');
+            response.text = response.text.replace('।\n\n', '।');
+            response.text = response.text.replace('।', '।\n\n');
+          }})
     })
   }
 
