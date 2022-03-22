@@ -32,6 +32,7 @@ export class VerseDescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getVerse();
+    window.scrollTo(0, 0);
   }
 
   previousSloka(): void {
