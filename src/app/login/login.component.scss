@@ -1,0 +1,76 @@
+.login {
+    @apply flex;
+    width: 1200px;
+    height: 600px;
+    background-color: aqua;
+
+    &__left-panel {
+        @apply flex p-20 flex-col items-center;
+        width: 70%;
+        background-color: bisque;
+    }
+    &__right-panel {
+        width: 30%;
+        background-color: black;
+    }
+
+    &__card {
+        @apply flex flex-col items-center justify-center;
+        &-title {
+            @apply relative text-3xl font-semibold;
+
+            &::before {
+                @apply absolute rounded-md;
+                content: '';
+                bottom: -16px;
+                left: 35%;
+                height: 5px;
+                width: 70px;
+                background-color: var(--primary--color);
+            }
+        }
+
+        &-social {
+            @apply flex mt-14;
+
+            &--icon {
+                @apply cursor-pointer flex justify-center items-center text-lg rounded-full;
+                width: 40px;
+                height: 40px;
+                border: 1px solid var(--primary--color);
+                transition: all 0.2s ease-in;
+                &:not(:last-child) {
+                    @apply mr-4;
+                }
+
+                &:hover {
+                    background-color: var(--primary--color);
+                    color: #fff;
+                    transition: all 0.2s ease-in;
+                }
+            }
+        }
+
+        &-input {
+            
+        }
+
+        &-email-text {
+            @apply text-center mt-8;
+        } 
+    }
+}
+
+.login-button {
+    @apply py-2 mt-6 px-14 text-center rounded-full;
+}
+
+.fill-button {
+    background-color: var(--primary--color);
+    color: #fff;
+    transition: all 0.2s ease-in;
+    &:hover {
+        background-color: var(--primary-dark-color);
+        transition: all 0.2s ease-in;
+    }
+}

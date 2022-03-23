@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChapterDescriptionComponent } from './components/chapter-description/chapter-description.component'
 import { FooterComponent } from './components/footer/footer.component';
 import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
+import { LoginComponent } from './login/login.component';
 
 //pagination-library
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import {DialogModule} from 'primeng/dialog';
     ChapterDescriptionComponent,
     VerseDescriptionComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import {DialogModule} from 'primeng/dialog';
     ProgressSpinnerModule,
     NgxPaginationModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    InputTextModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

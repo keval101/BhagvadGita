@@ -101,7 +101,7 @@
     }
     
     @screen sm-max {
-       @apply hidden;
+    //    @apply hidden;
     }
 
     &__title {
@@ -116,10 +116,20 @@
     &__container {
         @apply grid justify-center;
         grid-template-columns: repeat(auto-fill, 470px);
-        grid-gap: 24px
+        grid-gap: 24px;
+
+        @screen sm-max {
+            grid-template-columns: repeat(auto-fill, 100%);
+        }
     }
 
     &__dialog {
+        .p-dialog  {
+            width: 50vw;
+            @screen sm-max {
+                width: 90vw;
+            }
+        }
         .p-dialog-content {
             @apply overflow-y-scroll;
             max-height: 600px;
@@ -130,6 +140,12 @@
         }
         .p-dialog-header {
             color: var(--primary--color)
+        }
+        .p-component-overlay-enter {
+            @apply animate-none;
+        }
+        .p-component-overlay {
+            @apply bg-transparent;
         }
     }
 
