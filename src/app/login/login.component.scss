@@ -1,17 +1,24 @@
-.login {
-    @apply flex;
-    width: 1200px;
+.login {    
+    @apply flex rounded-md shadow-lg;
+    width: 1000px;
     height: 600px;
-    background-color: aqua;
+    border: 1px solid rgba(0,0,0,0.2);
+    
+    &__container {
+        @apply flex justify-center items-center;
+        height: calc(100vh - 60px);
+    }
 
     &__left-panel {
-        @apply flex p-20 flex-col items-center;
-        width: 70%;
-        background-color: bisque;
+        @apply flex p-20 flex-col justify-center items-center;
+        width: 60%;
+        transition: all 0.5s ease-in;
     }
     &__right-panel {
-        width: 30%;
-        background-color: black;
+        @apply flex p-10 flex-col justify-center items-center;
+        width: 40%;
+        background-color: var(--primary--color);
+        transition: all 0.5s ease-in;
     }
 
     &__card {
@@ -34,16 +41,16 @@
             @apply flex mt-14;
 
             &--icon {
-                @apply cursor-pointer flex justify-center items-center text-lg rounded-full;
+                @apply border border-gray-400 cursor-pointer flex justify-center items-center text-lg rounded-full;
                 width: 40px;
                 height: 40px;
-                border: 1px solid var(--primary--color);
                 transition: all 0.2s ease-in;
                 &:not(:last-child) {
                     @apply mr-4;
                 }
 
                 &:hover {
+                    border-color: var(--primary--color);
                     background-color: var(--primary--color);
                     color: #fff;
                     transition: all 0.2s ease-in;
@@ -52,17 +59,37 @@
         }
 
         &-input {
-            
+            width: 350px;
+            .p-inputtext {
+                @apply w-full py-2;
+                background-color: var(--background-color);
+            }
+            .p-inputtext:enabled:hover,.p-inputtext:enabled:focus {
+                border-color: var(--primary--color);
+            }
+            .p-inputtext:enabled:focus {
+                @apply shadow-none;
+            }
+            .p-float-label label {
+                font-size: 14px;
+            }
+            .p-float-label input:focus ~ label,
+            .p-float-label input.p-filled ~ label {
+                padding: 4px 4px;
+                top: -2px;
+                background-color: var(--background-color);
+                color: var(--primary--color);
+            }
         }
 
         &-email-text {
-            @apply text-center mt-8;
+            @apply text-center my-8 text-gray-500;
         } 
     }
 }
 
 .login-button {
-    @apply py-2 mt-6 px-14 text-center rounded-full;
+    @apply py-2 mt-6 px-14 text-center rounded-full bg-transparent;
 }
 
 .fill-button {
@@ -70,7 +97,65 @@
     color: #fff;
     transition: all 0.2s ease-in;
     &:hover {
-        background-color: var(--primary-dark-color);
+        background-color: var(--primary-light-color);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         transition: all 0.2s ease-in;
     }
+}
+.outline-button {
+    border: 1px solid #fff;
+    color: #fff;
+    transition: all 0.2s ease-in;
+    &:hover {
+        @apply bg-white;
+        color: var(--primary--color);
+        transition: all 0.2s ease-in;
+    }
+}
+
+.forgot-text {
+    @apply cursor-pointer self-end;
+    font-size: 12px;
+    color: var(--primary--color);
+}
+
+.signup {
+    &__card {
+        @apply flex flex-col items-center justify-center;
+
+        &-title {
+            @apply relative text-3xl font-semibold;
+            color: #fff;
+            transition: opacity 0.5s ease;
+            &::before {
+                @apply absolute rounded-md;
+                content: '';
+                bottom: -16px;
+                left: 35%;
+                height: 5px;
+                width: 70px;
+                background-color: #fff;
+            }
+        }
+        
+        &-text {
+            @apply text-center font-normal mt-8;
+            color: #fff;
+        }
+    }
+}
+
+.user-signup-right {
+    transform: translateX(-600px);
+    transition: all 0.5s ease-in;
+    border-radius: 6px 0 0 6px;
+    @screen lg-max {
+        transform: translateX(-540px);
+    } 
+}
+
+.user-signup-left {
+    transform: translateX(400px);
+    transition: all 0.5s ease-in;
+    border-radius: 0 6px 6px 0;
 }

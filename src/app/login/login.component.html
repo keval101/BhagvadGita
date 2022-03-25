@@ -1,24 +1,53 @@
-<div class="section content-container">
+<div class="section content-container login__container">
     <div class="login">
-        <div class="login__left-panel">
+        <div class="login__left-panel" [ngClass]="{'user-signup-left' : isSignUp}">
             <div class="login__card">
-                <h1 class="login__card-title">Sign in to Account</h1>
-
+                <h1 class="login__card-title" *ngIf="!isSignUp">Sign in to Account</h1>
+                <h1 class="login__card-title" *ngIf="isSignUp">Create Account</h1>
+                
                 <div class="login__card-social">
                     <i class="fa-brands fa-facebook-f login__card-social--icon"></i>
                     <i class="fa-brands fa-google-plus-g login__card-social--icon"></i>
                 </div>
 
-                <p class="login__card-email-text"> or use your email account</p>
+                <p class="login__card-email-text" *ngIf="!isSignUp"> or use your email account</p>
+                <p class="login__card-email-text" *ngIf="isSignUp"> or use your email account for registration</p>
 
-                <div class="login__card-input">
-                    <input type="email" pInputText />
+                <div class="login__card-input mb-5" *ngIf="isSignUp">
+                    <span class="p-float-label">
+                        <input id="float-input" type="text" pInputText> 
+                        <label for="float-input">Name</label>
+                    </span>
+                </div>
+                <div class="login__card-input mb-5">
+                    <span class="p-float-label">
+                        <input id="float-input" type="email" pInputText> 
+                        <label for="float-input">Email Address</label>
+                    </span>
                 </div>
 
-                <button class="login-button fill-button">Sign In</button>
+                <div class="login__card-input mb-2">
+                    <span class="p-float-label">
+                        <input id="float-input" type="password" pInputText> 
+                        <label for="float-input">Password</label>
+                    </span>
+                </div>
+
+                <p class="forgot-text" *ngIf="!isSignUp">Forgot Password?</p>
+                <button class="login-button fill-button" *ngIf="!isSignUp">Sign In</button>
+                <button class="login-button fill-button" *ngIf="isSignUp">Sign Up</button>
             </div>
         </div>
-        <div class="login__right-panel">
+        <div class="login__right-panel" [ngClass]="{'user-signup-right' : isSignUp}">
+            <div class="signup__card">
+                <h1 class="signup__card-title" *ngIf="!isSignUp">Hello, Friends!</h1>
+                <p class="signup__card-text" *ngIf="!isSignUp">Fill up personal information and start your spiritual journey with us</p>
+                <button class="login-button outline-button" (click)="signup()" *ngIf="!isSignUp">Sign Up</button>
+
+                <h1 class="signup__card-title" *ngIf="isSignUp">Welcome Back!</h1>
+                <p class="signup__card-text" *ngIf="isSignUp">To keep connected with spiritual world with us please login with your personal information</p>
+                <button class="login-button outline-button" (click)="showLogin()" *ngIf="isSignUp">Sign In</button>
+            </div>
         </div>
     </div>
 </div>
