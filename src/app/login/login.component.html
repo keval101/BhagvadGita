@@ -13,29 +13,46 @@
                 <p class="login__card-email-text" *ngIf="!isSignUp"> or use your email account</p>
                 <p class="login__card-email-text" *ngIf="isSignUp"> or use your email account for registration</p>
 
-                <div class="login__card-input mb-5" *ngIf="isSignUp">
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText> 
-                        <label for="float-input">Name</label>
-                    </span>
-                </div>
-                <div class="login__card-input mb-5">
-                    <span class="p-float-label">
-                        <input id="float-input" type="email" pInputText> 
-                        <label for="float-input">Email Address</label>
-                    </span>
-                </div>
+                <form [formGroup]="loginForm" (onSubmit)="loginUser()" *ngIf="!isSignUp">
+                    <div class="login__card-input mb-5">
+                        <span class="p-float-label">
+                            <input id="float-input" type="email" pInputText formControlName="email"> 
+                            <label for="float-input">Email Address</label>
+                        </span>
+                    </div>
+    
+                    <div class="login__card-input mb-2">
+                        <span class="p-float-label">
+                            <input id="float-input" type="password" pInputText formControlName="password"> 
+                            <label for="float-input">Password</label>
+                        </span>
+                    </div>
+                </form>
 
-                <div class="login__card-input mb-2">
-                    <span class="p-float-label">
-                        <input id="float-input" type="password" pInputText> 
-                        <label for="float-input">Password</label>
-                    </span>
-                </div>
+                <form *ngIf="isSignUp" [formGroup]="loginForm" (onSubmit)="signUpUser()" >
+                    <div class="login__card-input mb-5">
+                        <span class="p-float-label">
+                            <input id="float-input" type="text" pInputText formControlName="name"> 
+                            <label for="float-input">Name</label>
+                        </span>
+                    </div>
+                    <div class="login__card-input mb-5">
+                        <span class="p-float-label">
+                            <input id="float-input" type="email" pInputText formControlName="email"> 
+                            <label for="float-input">Email Address</label>
+                        </span>
+                    </div>
+                    <div class="login__card-input mb-2">
+                        <span class="p-float-label">
+                            <input id="float-input" type="password" pInputText formControlName="password"> 
+                            <label for="float-input">Password</label>
+                        </span>
+                    </div>
+                </form>
 
                 <p class="forgot-text" *ngIf="!isSignUp">Forgot Password?</p>
-                <button class="login-button fill-button" *ngIf="!isSignUp">Sign In</button>
-                <button class="login-button fill-button" *ngIf="isSignUp">Sign Up</button>
+                <button class="login-button fill-button" *ngIf="!isSignUp" (click)="loginUser()">Sign In</button>
+                <button class="login-button fill-button" *ngIf="isSignUp" (click)="signUpUser()">Sign Up</button>
             </div>
         </div>
         <div class="login__right-panel" [ngClass]="{'user-signup-right' : isSignUp}">
