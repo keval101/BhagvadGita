@@ -1,5 +1,5 @@
 <div class="section content-container login__container">
-    <div class="login">
+    <div class="login relative">
         <div class="login__left-panel" [ngClass]="{'user-signup-left' : isSignUp}">
             <div class="login__card">
                 <h1 class="login__card-title" *ngIf="!isSignUp">Sign in to Account</h1>
@@ -16,35 +16,36 @@
                 <form [formGroup]="loginForm" (onSubmit)="loginUser()" *ngIf="!isSignUp">
                     <div class="login__card-input mb-5">
                         <span class="p-float-label">
-                            <input id="float-input" type="email" pInputText formControlName="email"> 
+                            <input type="email" pInputText formControlName="email"> 
                             <label for="float-input">Email Address</label>
+                            <small class="p-error" *ngIf="loginForm.get('email')!.hasError('email')">Email is not valid.</small>
                         </span>
                     </div>
     
                     <div class="login__card-input mb-2">
                         <span class="p-float-label">
-                            <input id="float-input" type="password" pInputText formControlName="password"> 
+                            <input type="password" pInputText formControlName="password"> 
                             <label for="float-input">Password</label>
                         </span>
                     </div>
                 </form>
 
-                <form *ngIf="isSignUp" [formGroup]="loginForm" (onSubmit)="signUpUser()" >
+                <form *ngIf="isSignUp" [formGroup]="signUpForm" (onSubmit)="signUpUser()" >
                     <div class="login__card-input mb-5">
                         <span class="p-float-label">
-                            <input id="float-input" type="text" pInputText formControlName="name"> 
+                            <input type="text" pInputText formControlName="name"> 
                             <label for="float-input">Name</label>
                         </span>
                     </div>
                     <div class="login__card-input mb-5">
                         <span class="p-float-label">
-                            <input id="float-input" type="email" pInputText formControlName="email"> 
+                            <input type="email" pInputText formControlName="email"> 
                             <label for="float-input">Email Address</label>
                         </span>
                     </div>
                     <div class="login__card-input mb-2">
                         <span class="p-float-label">
-                            <input id="float-input" type="password" pInputText formControlName="password"> 
+                            <input type="password" pInputText formControlName="password"> 
                             <label for="float-input">Password</label>
                         </span>
                     </div>
@@ -66,5 +67,9 @@
                 <button class="login-button outline-button" (click)="showLogin()" *ngIf="isSignUp">Sign In</button>
             </div>
         </div>
+
+        <button class="back-button" *ngIf="isLogin" (click)="back()" [ngClass]="{'back-route': isBackClick, 'white-color': isSignUp}">
+            <i class="pi pi-arrow-left"></i>
+        </button>
     </div>
 </div>

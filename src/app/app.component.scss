@@ -41,6 +41,8 @@
 
 .navigation {
     @apply absolute top-0 w-full;
+    transition: all 0.4s ease-in;
+
     @screen sm-max {
         @apply fixed z-50;
         transform: translateX(-600px);
@@ -51,4 +53,15 @@
         transform: translateX(0);
         transition: all 0.5s ease-in;
     }
+}
+.footer {
+    transition: all 0.4s ease-in;
+}
+.hide-navbar {
+    transform: translateY(-80px);
+    transition: all 0.4s ease-in;
+}
+.hide-footer {
+    @apply hidden;
+    transition: all 0.4s ease-in;
 }

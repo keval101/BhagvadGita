@@ -13,9 +13,11 @@ export class NavbarComponent implements OnInit {
   }
 
   closeMenu(): void {
-    setTimeout(() => {
-      this.closeSidebar.emit();
-    }, 200);
+    if(window.screen.availWidth < 600) {
+      setTimeout(() => {
+        this.closeSidebar.emit();
+      }, 200);
+    }
   }
 
 }

@@ -1,3 +1,7 @@
+.section {
+    @apply pb-6;
+}
+
 .login {    
     @apply flex rounded-md shadow-lg;
     width: 1000px;
@@ -159,4 +163,22 @@
     transform: translateX(400px);
     transition: all 0.5s ease-in;
     border-radius: 0 6px 6px 0;
+}
+
+.back-button {
+    @apply absolute cursor-pointer;
+    color: var(--primary--color);
+    top: 20px;
+    left: 20px;
+    transition: all 0.4s ease-in;
+    .pi-arrow-left:before {
+        font-size: 20px;
+    }
+}
+.back-route {
+    transform: translateX(-2000px);
+    transition: all 0.4s ease-in;
+}
+.white-color {
+    color: #fff;
 }

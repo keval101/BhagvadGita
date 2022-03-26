@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'BhagvadGita';
+export class AppComponent implements OnInit, AfterContentChecked {
   isMenuOpen = false;
   isMobileScreen = false;
-
+  isLogin = false;
+  isBackClick = false;
+  constructor(private _router: Router, private _location: Location) {}
   ngOnInit(): void {
-    if(window.screen.availWidth < 600) {
-      this.isMobileScreen = true;
-    }
+    window.screen.availWidth < 600 ? this.isMobileScreen = true : this.isMobileScreen = false;
+  }
+
+  ngAfterContentChecked(): void {
+    this._router.url === '/login' ? this.isLogin = true : this.isLogin = false;
   }
   
   openMenu(): void {

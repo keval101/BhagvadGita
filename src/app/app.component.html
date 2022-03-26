@@ -1,4 +1,4 @@
-<div class="navigation" [ngClass]="{'open-menu': isMenuOpen}">
+<div class="navigation" [ngClass]="{'open-menu': isMenuOpen, 'hide-navbar': isLogin}">
     <app-navbar (closeSidebar)="openMenu()"></app-navbar>
 </div>
 
@@ -6,7 +6,7 @@
     <router-outlet></router-outlet>
 </div>
 
-<div class="footer">
+<div class="footer" [ngClass]="{'hide-footer': isLogin}">
     <app-footer></app-footer>
 </div>
 
