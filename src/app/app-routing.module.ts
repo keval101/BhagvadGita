@@ -4,7 +4,7 @@ import { ChapterDescriptionComponent } from './components/chapter-description/ch
 import { ChaptersComponent } from './components/chapters/chapters.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
