@@ -12,7 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChapterDescriptionComponent } from './components/chapter-description/chapter-description.component'
 import { FooterComponent } from './components/footer/footer.component';
 import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 //pagination-library
 import { NgxPaginationModule } from 'ngx-pagination';
