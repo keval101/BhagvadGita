@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -22,9 +24,9 @@ export class VerseDescriptionComponent implements OnInit {
     author: ''
   }
   isSummaryOpen: boolean;
-  constructor(private _activatedRoute: ActivatedRoute,
-              private _router: Router,
-              private _dataService: DataService) {
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, 
+              private _meta: Meta, private _metaTitle: Title,
+              private _dataService: DataService, private _canonicalService: CanonicalService) {
 
     this.isChangeVerse.subscribe(
       res => {
@@ -32,6 +34,7 @@ export class VerseDescriptionComponent implements OnInit {
           this.getVerse();
         }, 500);
       })
+
    }
 
   ngOnInit(): void {
@@ -62,6 +65,8 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
+        this._canonicalService.createCanonicalLink();
+        this._canonicalService.updateMetaTags(`श्रीमद्भगवद्‌गीता: ${res.chapter_number}.${res.verse_number}`, res.transliteration);
         this.isResponse = true;
           if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
             res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {
