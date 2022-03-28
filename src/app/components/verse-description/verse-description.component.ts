@@ -65,9 +65,8 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        this._meta.updateTag( { name: "description", content: `श्रीमद्भगवद्‌गीता: ${res.chapter_number}.${res.verse_number}` }, "name='description'");
-        this._meta.updateTag( { name: "keywords", content: `${res.transliteration}` }, "name='keywords'");
         this._canonicalService.createCanonicalLink();
+        this._canonicalService.updateMetaTags(`श्रीमद्भगवद्‌गीता: ${res.chapter_number}.${res.verse_number}`, res.transliteration);
         this.isResponse = true;
           if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
             res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {

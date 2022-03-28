@@ -43,9 +43,9 @@ export class ChapterDescriptionComponent implements OnInit {
 
       this._metaTitle.setTitle(`${this.chapter.name_translated}`);
       // update meta tag
-      this._meta.updateTag( { name: "description", content: `${this.chapter.chapter_summary}` }, "name='description'");
-      this._meta.updateTag( { name: "keywords", content: `${this.chapter.name_translated}` }, "name='keywords'");
       this._canonicalService.createCanonicalLink();
+      this._canonicalService.socialMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary,} )
+      this._canonicalService.updateMetaTags(this.chapter.chapter_summary, this.chapter.name_translated);
     })
 
     console.log(this.chapter);
