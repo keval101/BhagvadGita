@@ -24,8 +24,7 @@ export class VerseDescriptionComponent implements OnInit {
     author: ''
   }
   isSummaryOpen: boolean;
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, 
-              private _meta: Meta, private _metaTitle: Title,
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _metaTitle: Title,
               private _dataService: DataService, private _canonicalService: CanonicalService) {
 
     this.isChangeVerse.subscribe(
@@ -65,6 +64,7 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
+        this._metaTitle.setTitle(`Bhagvad Gita ${res.chapter_number}.${res.verse_number}`)
         this._canonicalService.createCanonicalLink();
         this._canonicalService.updateMetaTags(`श्रीमद्भगवद्‌गीता: ${res.chapter_number}.${res.verse_number}`, res.transliteration);
         this.isResponse = true;
