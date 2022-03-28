@@ -46,7 +46,7 @@ body {
 }
 
 .section {
-  @apply pt-20 pb-10;
+  @apply pt-24 pb-10;
 
   @screen sm-max {
     @apply pt-10;
@@ -60,6 +60,11 @@ body {
   .custom-spinner .p-progress-spinner-circle {
       animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
   }
+}
+
+
+.highlight-word {
+  color: var(--primary--color);
 }
 
 @keyframes custom-progress-spinner-color {
