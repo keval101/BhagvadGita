@@ -1,5 +1,5 @@
 header {
-    @apply shadow-sm;
+    @apply shadow-sm border-b-2;
     // background-color: var(--primary--color);
 }
 
@@ -20,7 +20,7 @@ header {
         }
         &-item {
             @apply relative mr-7;
-            color: #fff;
+            // color: #fff;
             transition: color 0.8s ease;
 
             @screen sm-max {
@@ -35,11 +35,12 @@ header {
             }
 
             &::before {
-                @apply bg-white absolute rounded-sm;
+                @apply absolute rounded-sm;
                 content: '';
+                background-color: var(--primary--color);
                 width: 0%;
                 height: 2px;
-                bottom: -10px;
+                bottom: -19px;
                 left: 0;
             }
 
@@ -50,12 +51,12 @@ header {
 
             .active {
                 @apply rounded-sm;
-                border-bottom: 2px solid #fff;
+                border-bottom: 2px solid var(--primary--color);
                 transition: color 0.8s ease 0.8s;
             }
 
             &-link {
-                padding: 0 14px 9px 14px;
+                padding: 0 14px 18px 14px;
 
                 @screen sm-max {
                     @apply pl-0;
