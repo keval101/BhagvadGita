@@ -1,4 +1,4 @@
-<div class="section chapter content-container">
+<section class="section chapter content-container">
     <div *ngIf="isChapterResponse">
         <!-- <div class="chapter__title">{{chapter.name}}</div> -->
         <div class="md:flex">
@@ -30,4 +30,4 @@
     <div class="pagination" *ngIf="isResponse">
         <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
     </div>
-</div>
+</section>

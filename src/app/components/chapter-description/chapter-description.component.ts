@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -20,7 +22,8 @@ export class ChapterDescriptionComponent implements OnInit {
   constructor(
     private _dataService: DataService, 
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) { 
+    private _activatedRoute: ActivatedRoute, private _meta: Meta,
+    private _metaTitle: Title, private _canonicalService: CanonicalService) { 
     if(window.screen.width < 1367) {
       this.showPage = 9;
     }
@@ -37,8 +40,15 @@ export class ChapterDescriptionComponent implements OnInit {
     this._dataService.getChapter(this.chapterID).subscribe( response => {
       this.chapter = response;
       this.isChapterResponse = true;
+
+      this._metaTitle.setTitle(`${this.chapter.name_translated}`);
+      // update meta tag
+      this._meta.updateTag( { name: "description", content: `${this.chapter.chapter_summary}` }, "name='description'");
+      this._meta.updateTag( { name: "keywords", content: `${this.chapter.name_translated}` }, "name='keywords'");
+      this._canonicalService.createCanonicalLink();
     })
 
+    console.log(this.chapter);
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
       this.verses = response;
       this.isResponse = true;
