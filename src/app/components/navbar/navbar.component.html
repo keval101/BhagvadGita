@@ -1,5 +1,8 @@
 <header>
     <nav class="navbar content-container">
+        <div class="navbar__logo" [routerLink]="['home']" routerLinkActive="active">
+            <img src="assets/logo2.png" alt="logo">
+        </div>
         <ul class="navbar__nav">
             <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link" [routerLink]="['home']" routerLinkActive="active">Home</a></li>
             <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link" [routerLink]="['chapters']" routerLinkActive="active">Chapters</a></li>

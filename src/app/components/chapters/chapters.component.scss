@@ -1,45 +1,14 @@
-
 .title {
-    @apply mb-14 text-center relative;
+    @apply mb-11 font-semibold;
     font-size: 60px;
     line-height: 40px;
     color: var(--primary--color);
 
-    @screen sm-max {
-        @apply mb-5;
-        font-size: 24px;
-    }
-
-    &__text {
-        @apply relative;
-        &::after,
-        &::before {
-            @apply rounded-sm absolute;
-            content: '';
-            background-color: var(--primary--color);
-            width: 80px;
-            height: 3px;
-            top: 50%;
-
-            @screen sm-max {
-                width: 50px;
-                height: 2px;
-            }
-        }
-        &::after {
-            left: -100px;
-            @screen sm-max {
-                left: -65px
-            }
-        }
-        &::before {
-            right: -100px;
-            @screen sm-max {
-                right: -65px;
-            }
-        }
+    @screen md-max {
+        @apply mt-7;
     }
 }
+
 .chapters {
     &__container {
         @apply grid justify-center;
@@ -54,6 +23,14 @@
             grid-template-columns: (repeat(auto-fill, 100%));
         }
     }
+
+    &__summary {
+        line-height: 30px;
+        .highlight-word {
+            @apply font-semibold;
+        }
+    }
+
     &__card {
         @apply p-4 rounded-lg flex justify-center flex-col;
         background-color: #fff;

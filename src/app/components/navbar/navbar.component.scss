@@ -1,17 +1,41 @@
 header {
     @apply shadow-sm border-b-2;
-    // background-color: var(--primary--color);
+
+    @screen sm-max {
+        @apply bg-white
+    }
 }
 
 .navbar {
     min-height: 60px;
-    @apply flex items-center justify-end;
+    @apply flex items-center justify-between;
 
     @screen sm-max {
-        @apply justify-center py-7 h-screen;
+        @apply justify-center flex-col py-7 h-screen;
     }
 
+    &__logo {
+        @apply rounded-full cursor-pointer bg-transparent;
+        width: 50px;
+        height: 50px;
+        transition: box-shadow 0.2s ease-in;
 
+        @screen sm-max {
+            @apply mb-8;
+            width: 100px;
+            height: 100px;
+            margin-left: -72px;
+        }
+
+        img {
+            @apply w-full h-full;
+        }
+
+        &:hover {
+            @apply shadow-lg;
+            transition: box-shadow 0.2s ease-in;
+        }
+    }
     &__nav {
         @apply flex;
 
@@ -20,7 +44,6 @@ header {
         }
         &-item {
             @apply relative mr-7;
-            // color: #fff;
             transition: color 0.8s ease;
 
             @screen sm-max {
@@ -42,6 +65,10 @@ header {
                 height: 2px;
                 bottom: -19px;
                 left: 0;
+                
+                @screen sm-max {
+                    bottom: -11px;
+                }
             }
 
             &:hover::before,&:active::before {
