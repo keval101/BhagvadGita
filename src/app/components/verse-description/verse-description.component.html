@@ -4,29 +4,29 @@
         <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
     </div>
 
-    <div class="flex items-center justify-center" *ngIf="isResponse">
+    <div class="common-flex-center" *ngIf="isResponse">
 
         <button pButton pRipple type="button" icon="pi pi-angle-left" class="p-button-rounded left-icon" (click)="previousSloka()"></button>
 
-        <div class="verse__card relative" *ngIf="isResponse">
-            <img src="../../../assets/krishnaArjunaa.jpg" alt="krishna-Arjuna" class="verse__card-image">
+        <div class="verse__card relative flex flex-col items-center rounded-sm p-10" *ngIf="isResponse">
+            <img src="assets/krishnaArjunaa.jpg" alt="krishna-Arjuna" class="verse__card-image">
     
-            <h1 class="verse__card-title">|| <span class="font-bold">श्रीमद्भगवद्‌ गीता &nbsp;{{verse.chapter_number}}.{{verse.verse_number}}</span> ||</h1>
+            <h1 class="verse__card-title primary-text-color my-7 font-thin">|| <span class="font-bold">श्रीमद्भगवद्‌ गीता &nbsp;{{verse.chapter_number}}.{{verse.verse_number}}</span> ||</h1>
     
-            <p class="verse__card-slok">
+            <p class="verse__card-slok whitespace-pre-line mt-4 font-semibold text-center">
                 {{verse.text}}
             </p>
     
-            <p class="verse__card-transliteration">
+            <p class="verse__card-transliteration text-center whitespace-pre-line mt-7">
                 {{verse.transliteration}}
             </p>
     
-            <div class="verse__card-meaning">
-                <h2 class="verse__card-meaning--title">Word meanings</h2>
-                <p class="verse__card-meaning--text">{{verse.word_meanings}}</p>
+            <div class="verse__card-meaning my-7">
+                <h2 class="primary-text-color text-center text-lg mb-2">Word meanings</h2>
+                <p class="verse__card-meaning--text text-center">{{verse.word_meanings}}</p>
             </div>
 
-            <p class="footer-text">(Bhagvad Gita, Chapter {{verse.chapter_number}}, Shloka {{verse.verse_number}})</p>
+            <p class="footer-text text-xs text-center font-light text-gray-400">(Bhagvad Gita, Chapter {{verse.chapter_number}}, Shloka {{verse.verse_number}})</p>
             <div class="mobile-button">
                 <button pButton pRipple type="button" icon="pi pi-angle-left" class="p-button-rounded" (click)="previousSloka()"></button>
                 <button pButton pRipple type="button" icon="pi pi-angle-right" class="p-button-rounded" (click)="nextSloka()"></button>
@@ -38,12 +38,12 @@
     </div>
 
     <div class="summary" *ngIf="isResponse">
-        <h1 class="summary__title">Summary</h1>
+        <h1 class="summary__title primary-text-color font-semibold text-4xl mb-11">Summary</h1>
 
-        <div class="summary__container">
-            <div class="summary__card" *ngFor="let summary of summaries">
+        <div class="summary__container grid justify-center">
+            <div class="summary__card p-6 flex flex-col rounded-sm" *ngFor="let summary of summaries">
                 <p class="summary__card-description">{{summary.description}}</p>
-                <p class="summary__card-read-text" (click)="readSummary(summary.description, summary.author_name)"> Read More</p>
+                <p class="summary__card-read-text mt-5 cursor-pointer ml-auto underline" (click)="readSummary(summary.description, summary.author_name)"> Read More</p>
             </div>
         </div>
     </div>
@@ -51,5 +51,5 @@
 
 <p-dialog header="Summary" [(visible)]="isSummaryOpen" class="summary__dialog" [draggable]="false" [modal]="true">
     <p>{{selectedSummary.description}}</p>
-    <p class="summary__card-author">- {{selectedSummary.author}}</p>
+    <p class="summary__card-author mt-5 flex justify-end ml-auto">- {{selectedSummary.author}}</p>
 </p-dialog>

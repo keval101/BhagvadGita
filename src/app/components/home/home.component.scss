@@ -1,18 +1,15 @@
 .home {
     &__content {
         @apply flex;
-        @screen md-max {
-            @apply flex-col flex-col-reverse;   
-        }
     }
     
     &__text {
-        @apply flex flex-col flex-grow mr-20 justify-center ;
         width: 65%;
         font-size: 18px;
         line-height: 30px;
+
         @screen md-max {
-            @apply w-full mt-5;   
+            @apply w-full;
         }
     }
     &__image {
@@ -20,14 +17,10 @@
         @screen sm-max {
             @apply h-auto;
         }
-        img {
-            @apply w-full h-full;
-        }
     }
 }
 
 .redirect-button {
-    @apply flex items-center mt-5 justify-center py-2 rounded-full;
     width: 220px;
     color: #f6f9fc;
     background-color: var(--primary--color);
@@ -52,8 +45,4 @@
     100% {
         transform: translateX(0);
     }
-}
-
-.highlight-word {
-    color: var(--primary--color);
 }

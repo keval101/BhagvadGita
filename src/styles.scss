@@ -63,8 +63,12 @@ body {
 }
 
 
-.highlight-word {
+.primary-text-color {
   color: var(--primary--color);
+}
+
+.common-flex-center {
+  @apply flex items-center justify-center;
 }
 
 @keyframes custom-progress-spinner-color {

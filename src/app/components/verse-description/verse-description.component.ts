@@ -59,6 +59,7 @@ export class VerseDescriptionComponent implements OnInit {
       params => {
         this.verseNumber = params['verseId'];
         this.chapterNumber = params['chapId'];
+        this.summaries = [];
       })
 
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
@@ -74,7 +75,7 @@ export class VerseDescriptionComponent implements OnInit {
             res.text = res.text.replace('।\n\n', '।');
             res.text = res.text.replace('।', '।\n\n');
           }
-        this.verse.commentaries.map(
+        res.commentaries.map(
           summary => {
             if(summary.language === 'hindi' || summary.language === 'english') {
               this.summaries.push(summary);

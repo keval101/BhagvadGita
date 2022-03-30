@@ -2,31 +2,35 @@
     @apply pb-6;
 }
 
-.login {    
+.login {
     @apply flex rounded-md shadow-lg;
     width: 1000px;
     height: 600px;
     border: 1px solid rgba(0,0,0,0.2);
     
     &__container {
-        @apply flex justify-center items-center;
         height: calc(100vh - 60px);
     }
 
+    &__left-panel,
+    &__right-panel,
+    &__card {
+        @apply flex flex-col justify-center items-center;
+    }
+
     &__left-panel {
-        @apply flex p-20 flex-col justify-center items-center;
+        @apply p-20;
         width: 60%;
         transition: all 0.5s ease-in;
     }
     &__right-panel {
-        @apply flex p-10 flex-col justify-center items-center;
+        @apply p-10;
         width: 40%;
         background-color: var(--primary--color);
         transition: all 0.5s ease-in;
     }
 
     &__card {
-        @apply flex flex-col items-center justify-center;
         &-title {
             @apply relative text-3xl font-semibold;
 
@@ -45,7 +49,7 @@
             @apply flex mt-14;
 
             &--icon {
-                @apply border border-gray-400 cursor-pointer flex justify-center items-center text-lg rounded-full;
+                @apply border border-gray-400 cursor-pointer text-lg rounded-full;
                 width: 40px;
                 height: 40px;
                 transition: all 0.2s ease-in;
