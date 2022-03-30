@@ -1,19 +1,19 @@
 <section class="section__container section content-container">
-    <h1 class="title">Chapters</h1>
+    <h1 class="text-6xl primary-text-color mb-8 font-semibold md-max:mt-7">Chapters</h1>
     <div class="chapters__summary mb-8">
-        In the Bhagavad Gita, there are a total of 18 chapters, out of which <span class="highlight-word">1st to 6th</span> is talk about how one should do his duties and is called
-        <span class="highlight-word">Karma Yoga</span>.
+        In the Bhagavad Gita, there are a total of 18 chapters, out of which <span class="primary-text-color">1st to 6th</span> is talk about how one should do his duties and is called
+        <span class="primary-text-color">Karma Yoga</span>.
         <br>
-        The second set of 6 chapters from chapter <span class="highlight-word">7th to 12th</span> is called as <span class="highlight-word">Bhakti Yoga</span>.
+        The second set of 6 chapters from chapter <span class="primary-text-color">7th to 12th</span> is called as <span class="primary-text-color">Bhakti Yoga</span>.
         <br>
-        The third set of 6 chapters from chapter <span class="highlight-word">13th to 18th</span> is called as <span class="highlight-word">Jaana Yoga</span>.
+        The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jaana Yoga</span>.
     </div>
-    <div class="chapters__container" *ngIf="isResponse">
-        <div class="chapters__card" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
-            <h3 class="chapters__title">{{chapter.name_translated}}</h3>
+    <div class="chapters__container grid justify-center" *ngIf="isResponse">
+        <div class="chapters__card p-4 rounded-lg flex justify-center flex-col hover:cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
+            <h3 class="font-normal text-2xl">{{chapter.name_translated}}</h3>
             <div class="flex">
-                <span class="chapters__text mr-2">Chapter {{chapter.id}},</span>
-                <span class="chapters__verses">Verses {{chapter.verses_count}}</span>
+                <span class="chapters__text text-gray-500 mr-2">Chapter {{chapter.id}},</span>
+                <span class="chapters__verses text-gray-500">Verses {{chapter.verses_count}}</span>
             </div>
         </div>
     </div>
