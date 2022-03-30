@@ -15,11 +15,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._metaTitle.setTitle('Bhagvad Gita Description');
-    const description = 'Sometimes called Gitopanishad (as the essence of the 108 Upanishads), Bhagavad-gita is regarded as the most important book of the Vedic literature, the vast body of ancient knowledge which is the foundation of Vedic culture, philosophy and spirituality.'
     this._canonicalService.createCanonicalLink();
     this._canonicalService.socialMetaTags({
       metaTitle: 'Bhagvad Gita Description',
-      description: description,
+      description: 'Sometimes called Gitopanishad (as the essence of the 108 Upanishads), Bhagavad-gita is regarded as the most important book of the Vedic literature, the vast body of ancient knowledge which is the foundation of Vedic culture, philosophy and spirituality.',
       keywords: 'Bhagvad gita'
     })
   }
