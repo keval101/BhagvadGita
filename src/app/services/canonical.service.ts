@@ -25,7 +25,7 @@ export class CanonicalService {
       { name: "description", content: tagsDesctiption.description},
       { name: 'keywords', content: tagsDesctiption.keywords },
 
-      { property: 'twitter:card', content: tagsDesctiption.metaTitle},
+      { property: 'twitter:card', content: 'summary_large_image'},
       { property: 'twitter:site', content: `${this.pageUrl}`},
       { property: 'twitter-title', content: tagsDesctiption.metaTitle},
       { property: 'twitter:description', content: tagsDesctiption.description},
