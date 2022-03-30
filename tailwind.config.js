@@ -1,11 +1,23 @@
 module.exports = {
-  purge: [
-    './src/**/*.html',
-    './src/**/*.ts',
-  ],
+  future: {
+    purgeLayersByDefault: true,
+  },
+  purge: {
+    enabled: true,
+    content: [
+      './src/**/*.html',
+      './src/**/*.ts',
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        gray: {
+          400: '#DCDBDB',
+          500: '#A7A6A6',
+        }
+      },
       screens: {
         '2xl-max': {'max': '1600px'},
         // => @media (max-width: 1600px) { ... }
@@ -23,6 +35,9 @@ module.exports = {
         // => @media (max-width: 640px) { ... }
       }
     },
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
   },
   variants: {
     extend: {},

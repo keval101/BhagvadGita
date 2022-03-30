@@ -1,10 +1,4 @@
 .chapter {
-    // @apply pt-16;
-
-    &__detail {
-        @apply flex flex-col justify-center;
-    }
-
     &__title {
         @apply flex items-baseline pb-4 mb-6;
 
@@ -13,10 +7,8 @@
         }
 
         h1 {
-            @apply font-semibold;
             font-size: 54px;
             line-height: 32px;
-            color: var(--primary--color);
 
             @screen 2xl-max {
                 font-size: 45px;
@@ -55,7 +47,6 @@
 }
 
 .verses {
-    @apply grid justify-center mt-10;
     grid-template-columns: repeat(auto-fill, 350px);
     grid-gap: 30px;
 
@@ -68,7 +59,6 @@
     }
 
     &__box {
-        @apply flex flex-col shadow-md text-center rounded-md cursor-pointer;
         // width: 350px;
         min-height: 165px;
         max-height: 220px;
@@ -77,13 +67,11 @@
         transition: all 0.2s ease-in;
     
         &-title {
-            @apply w-full py-3 text-white font-semibold border-gray-200 flex items-center justify-center;
             border-bottom:  1px solid rgba(0,0,0,0.1);
             background-color: var(--primary-light-color);
         }
     
         &-text {
-            @apply py-5 flex flex-grow justify-center items-center;
             line-height: 16px;
         }
     
@@ -103,7 +91,6 @@
 //custom-style for pagination-controll
 
 .pagination {
-    @apply w-full mt-12;
     .ngx-pagination {
         @apply flex justify-center;
 

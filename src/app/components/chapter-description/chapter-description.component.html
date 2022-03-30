@@ -2,9 +2,9 @@
     <div *ngIf="isChapterResponse">
         <!-- <div class="chapter__title">{{chapter.name}}</div> -->
         <div class="md:flex">
-            <div class="chapter__detail sm-max:mr-0 sm:mr-14">
+            <div class="flex flex-col justify-center sm-max:mr-0 sm:mr-14">
                 <div class="chapter__title">
-                    <h1>{{chapter.name_translated}}
+                    <h1 class="font-semibold primary-text-color">{{chapter.name_translated}}
                     <span class="text-xs" style="color: var(--primary-light-color);" *ngIf="isMobileScreen">(Chapter-{{chapter.chapter_number}})</span></h1>
                     <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">(Chapter-{{chapter.chapter_number}})</p>   
                 </div>
@@ -20,14 +20,14 @@
         <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
     </div>
 
-    <div class="verses" >
-        <div *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box" (click)="redirectToVerse(verse.verse_number)">
-            <div class="verses__box-title">Verse {{verse.verse_number}}</div>
-            <div class="verses__box-text">{{verse.text}}</div>
+    <div class="verses grid justify-center mt-10" >
+        <div *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer" (click)="redirectToVerse(verse.verse_number)">
+            <div class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</div>
+            <div class="verses__box-text py-5 flex-grow common-flex-center">{{verse.text}}</div>
         </div>
     </div>
 
-    <div class="pagination" *ngIf="isResponse">
+    <div class="pagination w-full mt-12" *ngIf="isResponse">
         <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
     </div>
 </section>
