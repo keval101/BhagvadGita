@@ -3,7 +3,7 @@ module.exports = {
     purgeLayersByDefault: true,
   },
   purge: {
-    enabled: process.env.NODE_ENV === 'production',
+    enabled: true,
     content: [
       './src/**/*.html',
       './src/**/*.ts',
