@@ -25,6 +25,12 @@ export class CanonicalService {
       { name: "description", content: tagsDesctiption.description},
       { name: 'keywords', content: tagsDesctiption.keywords },
 
+      { property: 'og:type', content: 'website'},
+      { property: 'og:url', content: `${this.pageUrl}`},
+      { property: 'og:title', content: tagsDesctiption.metaTitle},
+      { property: 'og:description', content: tagsDesctiption.description},
+      { property: 'og:image', content: 'assets/krishnaArjunaa.jpg'},
+
       { property: 'twitter:card', content: 'summary_large_image'},
       { property: 'twitter:site', content: `${this.pageUrl}`},
       { property: 'twitter-title', content: tagsDesctiption.metaTitle},
