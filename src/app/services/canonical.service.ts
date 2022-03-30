@@ -32,7 +32,7 @@ export class CanonicalService {
       { property: 'og:image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
 
       { property: 'twitter:card', content: 'summary_large_image'},
-      { property: 'twitter:site', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
+      { property: 'twitter:site', content: `@BhagavadGita`},
       { property: 'twitter-title', content: tagsDesctiption.metaTitle},
       { property: 'twitter:description', content: tagsDesctiption.description},
       { property: 'twitter-image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
