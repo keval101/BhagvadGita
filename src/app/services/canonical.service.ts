@@ -31,11 +31,11 @@ export class CanonicalService {
       { property: 'og:description', content: tagsDesctiption.description},
       { property: 'og:image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
 
-      { property: 'twitter:card', content: 'summary_large_image'},
-      { property: 'twitter:site', content: `@BhagavadGita`},
-      { property: 'twitter-title', content: tagsDesctiption.metaTitle},
-      { property: 'twitter:description', content: tagsDesctiption.description},
-      { property: 'twitter-image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
+      { name: 'twitter:card', content: 'summary_large_image'},
+      { name: 'twitter:site', content: `@BhagavadGita`},
+      { name: 'twitter-title', content: tagsDesctiption.metaTitle},
+      { name: 'twitter:description', content: tagsDesctiption.description},
+      { name: 'twitter-image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
     ])
   }
 
