@@ -44,8 +44,8 @@ export class ChapterDescriptionComponent implements OnInit {
       this._metaTitle.setTitle(`${this.chapter.name_translated}`);
       // update meta tag
       this._canonicalService.createCanonicalLink();
-      this._canonicalService.socialMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary,} )
-      this._canonicalService.updateMetaTags(this.chapter.chapter_summary, this.chapter.name_translated);
+      const keywords = `${this.chapter.name_translated}, bhagavad gita chapter ${this.chapter.chapter_number}, ${this.chapter.name_meaning}, ${this.chapter.name}, ${this.chapter.slug}, bhagavad gita ${this.chapter.chapter_number} adhyay`
+      this._canonicalService.updateMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary, keywords: keywords});
     })
 
     console.log(this.chapter);
