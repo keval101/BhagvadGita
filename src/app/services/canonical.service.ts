@@ -33,9 +33,9 @@ export class CanonicalService {
 
       { name: 'twitter:card', content: 'summary_large_image'},
       { name: 'twitter:site', content: `@BhagavadGita`},
-      { name: 'twitter-title', content: tagsDesctiption.metaTitle},
+      { name: 'twitter:title', content: tagsDesctiption.metaTitle},
       { name: 'twitter:description', content: tagsDesctiption.description},
-      { name: 'twitter-image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
+      { name: 'twitter:image', content: `https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg`},
     ])
   }
 
