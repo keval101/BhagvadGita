@@ -29,13 +29,13 @@ export class CanonicalService {
       { property: 'og:url', content: `${this.pageUrl}`},
       { property: 'og:title', content: tagsDesctiption.metaTitle},
       { property: 'og:description', content: tagsDesctiption.description},
-      { property: 'og:image', content: 'assets/krishnaArjunaa.jpg'},
+      { property: 'og:image', content: `${this.pageUrl}/assets/krishnaArjunaa.jpg`},
 
       { property: 'twitter:card', content: 'summary_large_image'},
       { property: 'twitter:site', content: `${this.pageUrl}`},
       { property: 'twitter-title', content: tagsDesctiption.metaTitle},
       { property: 'twitter:description', content: tagsDesctiption.description},
-      { property: 'twitter-image', content: 'assets/krishnaArjunaa.jpg'},
+      { property: 'twitter-image', content: `${this.pageUrl}/assets/krishnaArjunaa.jpg`},
     ])
   }
 
