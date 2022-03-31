@@ -24,6 +24,7 @@ export class CanonicalService {
   updateMetaTags(tagsDesctiption: IMetaTags): void {
     this._meta.updateTag( { name: "description", content: tagsDesctiption.description }, "name='description'");
     this._meta.updateTag( { name: "keywords", content: tagsDesctiption.keywords }, "name='keywords'");
+    this._meta.updateTag( { name: "image", content: 'https://bhagavad-gita.netlify.app/assets/krishnaArjunaa.jpg' }, "name='image'");
 
     this._meta.updateTag( { property: 'og:type', content: 'website' }, "property='og:type'");
     this._meta.updateTag( { property: 'og:url', content: this.pageUrl }, "property='og:url'");
