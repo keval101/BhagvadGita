@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from '../../services/data.service';
@@ -15,7 +15,7 @@ export class ChaptersComponent implements OnInit {
   totalChapters = [];
   isResponse: boolean;
   constructor(private _dataService: DataService, private _canonicalService: CanonicalService,
-              private _router: Router, private _meta: Meta, private _metaTitle: Title) { 
+              private _router: Router, private _metaTitle: Title) { 
     this.isResponse = false;
   }
 
@@ -24,11 +24,10 @@ export class ChaptersComponent implements OnInit {
     const keywords = 'Arjuna Visada Yoga,Sankhya Yoga,Karma Yoga,Jnana Karma Sanyasa Yoga,Karma Sanyasa Yoga,Dhyana Yoga,Gyaan Vigyana Yoga,Akshara Brahma Yoga,Raja Vidya Yoga,Vibhooti Yoga,Vishwaroopa Darshana Yoga,Bhakti Yoga,Ksetra Ksetrajna Vibhaaga Yoga,Gunatraya Vibhaga Yoga,Purushottama Yoga,Daivasura Sampad Vibhaga Yoga,Sraddhatraya Vibhaga Yoga,Moksha Sanyaas Yoga'
 
     this._canonicalService.createCanonicalLink();
-    this._canonicalService.socialMetaTags(
-      {metaTitle: 'Bhagvad Gita Chapters',
-      description: 'Bhagvad Gita has 18 adhyay.',
-      keywords: keywords
-    });
+    this._canonicalService.updateMetaTags({metaTitle: 'Bhagvad Gita Chapters',
+    description: 'In the Bhagavad Gita, there are a total of 18 chapters, out of which 1st to 6th is talk about how one should do his duties and is called Karma Yoga.The second set of 6 chapters from chapter 7th to 12th is called as Bhakti Yoga.The third set of 6 chapters from chapter 13th to 18th is called as Jaana Yoga',
+    keywords: keywords
+  });    
 
     this._dataService.getAllChapters().subscribe(
       response => {

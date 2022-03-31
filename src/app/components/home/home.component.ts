@@ -15,12 +15,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._metaTitle.setTitle('Bhagvad Gita Description');
-    const description = 'Sometimes called Gitopanishad (as the essence of the 108 Upanishads), Bhagavad-gita is regarded as the most important book of the Vedic literature, the vast body of ancient knowledge which is the foundation of Vedic culture, philosophy and spirituality.'
     this._canonicalService.createCanonicalLink();
-    this._canonicalService.socialMetaTags({
+    const description = 'Bhagavad-gita, comprised of 700 Sanskrit verses, this is India’s single most important literary and philososphical contribution. It stands unrivalled as a timeless classic its message just as valid and relevant today as 5,000 years ago when it was first spoken and recorded.'
+    const keywords = 'Bhagvad gita, BhagavadGita, bhagavad gita, bhagavad gita quotes, karma bhagavad gita quotes in hindi, positive thinking bhagavad gita quotes, bhagavad gita pdf, bhagavad gita api, bhagavad gita website, bhagavad gita web, bhagavad gita in hindi, the bhagavad gita, bhagavad gita summary, sri bhagavad gita, bhagavad gita english, slokas in bhagavad gita, bhagavad gita online'
+    this._canonicalService.updateMetaTags({
       metaTitle: 'Bhagvad Gita Description',
       description: description,
-      keywords: 'Bhagvad gita'
+      keywords: keywords
     })
   }
 

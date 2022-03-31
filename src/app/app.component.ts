@@ -17,8 +17,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {
     window.screen.availWidth < 600 ? this.isMobileScreen = true : this.isMobileScreen = false;
     this._meta.addTags([
-      { name: "description", content:"Bhagavad-gita, comprised of 700 Sanskrit verses, this is India’s single most important literary and philososphical contribution. It stands unrivalled as a timeless classic its message just as valid and relevant today as 5,000 years ago when it was first spoken and recorded." },
-      { name: 'keywords', content: 'Bhagvad-gita' },
+      { name: "description", content:"" },
+      { name: 'keywords', content: '' },
       { name: 'author', content: 'Keval Vadhiya' },
     ])
   }
