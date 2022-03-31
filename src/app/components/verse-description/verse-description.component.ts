@@ -65,7 +65,7 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        const title = `Bhagvad Gita ${res.chapter_number}.${res.verse_number}`
+        const title = `Bhagvad Gita Chepter ${res.chapter_number} Verse ${res.verse_number}`
         const keywords = `bhagavad gita chapter ${res.chapter_number} slok ${res.verse_number}, bhagavad gita adhay ${res.chapter_number} slok ${res.verse_number}`
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
