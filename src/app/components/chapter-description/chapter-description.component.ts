@@ -41,7 +41,7 @@ export class ChapterDescriptionComponent implements OnInit {
       this.chapter = response;
       this.isChapterResponse = true;
 
-      this._metaTitle.setTitle(`${this.chapter.name_translated}`);
+      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number} - ${this.chapter.name_translated}`);
       // update meta tag
       this._canonicalService.createCanonicalLink();
       const keywords = `${this.chapter.name_translated}, bhagavad gita chapter ${this.chapter.chapter_number}, ${this.chapter.name_meaning}, ${this.chapter.name}, ${this.chapter.slug}, bhagavad gita ${this.chapter.chapter_number} adhyay`
