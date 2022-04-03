@@ -34,7 +34,7 @@ import {InputTextModule} from 'primeng/inputtext';
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,

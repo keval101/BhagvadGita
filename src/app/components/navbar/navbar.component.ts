@@ -13,11 +13,11 @@ export class NavbarComponent implements OnInit {
   }
 
   closeMenu(): void {
-    if(window.screen.availWidth < 600) {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       setTimeout(() => {
         this.closeSidebar.emit();
       }, 200);
-    }
+     }
   }
 
 }

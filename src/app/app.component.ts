@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -15,12 +14,17 @@ export class AppComponent implements OnInit, AfterContentChecked {
   isBackClick = false;
   constructor(private _router: Router, private _meta: Meta) {}
   ngOnInit(): void {
-    window.screen.availWidth < 600 ? this.isMobileScreen = true : this.isMobileScreen = false;
     this._meta.addTags([
       { name: "description", content:"" },
       { name: 'keywords', content: '' },
       { name: 'author', content: 'Keval Vadhiya' },
     ])
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      this.isMobileScreen = true;
+    } else {
+      this.isMobileScreen = false;
+    }
   }
 
   ngAfterContentChecked(): void {
