@@ -24,18 +24,18 @@ export class CanonicalService {
   updateMetaTags(tagsDesctiption: IMetaTags): void {
     this._meta.updateTag( { name: "description", content: tagsDesctiption.description }, "name='description'");
     this._meta.updateTag( { name: "keywords", content: tagsDesctiption.keywords }, "name='keywords'");
-    this._meta.updateTag( { name: "image", content: 'https://bhagavad-gita.netlify.app/assets/ogImage.jpg' }, "name='image'");
+    this._meta.updateTag( { name: "image", content: 'https://bhagavad-gita.netlify.app/assets/krishna-arjuna.jpg' }, "name='image'");
 
     this._meta.updateTag( { property: 'og:type', content: 'website' }, "property='og:type'");
     this._meta.updateTag( { property: 'og:url', content: this.pageUrl }, "property='og:url'");
     this._meta.updateTag( { property: 'og:title', content: tagsDesctiption.metaTitle }, "property='og:title'");
     this._meta.updateTag( { property: 'og:description', content: tagsDesctiption.description }, "property='og:description'");
-    this._meta.updateTag( { property: 'og:image:secure_url', content: 'https://bhagavad-gita.netlify.app/assets/ogImage.jpg' }, "property='og:image:secure_url'");
+    this._meta.updateTag( { property: 'og:image:secure_url', content: 'https://bhagavad-gita.netlify.app/assets/krishna-arjuna.jpg' }, "property='og:image:secure_url'");
 
     this._meta.updateTag({ name: 'twitter:site', content: `@BhagavadGita`}, "name='twitter:site'")
     this._meta.updateTag({ name: 'twitter:title', content: tagsDesctiption.metaTitle}, "name='twitter:title'")
     this._meta.updateTag({ name: 'twitter:description', content: tagsDesctiption.description}, "name='twitter:description'")
-    this._meta.updateTag({ name: 'twitter:image', content: `https://bhagavad-gita.netlify.app/assets/ogImage.jpg`}, "name='twitter:image'")
+    this._meta.updateTag({ name: 'twitter:image', content: `https://bhagavad-gita.netlify.app/assets/krishna-arjuna.jpg`}, "name='twitter:image'")
     this._meta.updateTag({ name: 'twitter:card', content: 'summary_large_image'}, "name='twitter:card'")
   }
 }
