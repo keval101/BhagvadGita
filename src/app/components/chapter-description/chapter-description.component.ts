@@ -19,6 +19,8 @@ export class ChapterDescriptionComponent implements OnInit {
   selectedPage: number = 1;
   showPage = 12;
   isMobileScreen: boolean;
+  selectedVerse: number;
+  isLargerNumber: boolean;
   constructor(
     private _dataService: DataService, 
     private _router: Router,
@@ -69,7 +71,19 @@ export class ChapterDescriptionComponent implements OnInit {
   }
 
   redirectToVerse(verse: number): void {
-    this._router.navigate(['verse', verse], {relativeTo: this._activatedRoute});
+    console.log(verse);
+    if(verse <= this.verses.length) {
+      this._router.navigate(['verse', verse], {relativeTo: this._activatedRoute});
+    } else {
+      this.isLargerNumber = true;
+    }
   }
+
+  onVerseKeyup(event): void {
+    this.isLargerNumber = false;
+    console.log(event);
+  }
+
+  
   
 }
