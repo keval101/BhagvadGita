@@ -31,8 +31,7 @@
               "src/assets",
               "src/_redirects",
               "src/dynamicRoutes.txt",
-              "src/robots.txt",
-              "src/sitemap.xml"
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.scss",
