@@ -22,6 +22,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,7 @@ import {InputTextModule} from 'primeng/inputtext';
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
@@ -44,7 +45,8 @@ import {InputTextModule} from 'primeng/inputtext';
     NgxPaginationModule,
     ButtonModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    InputNumberModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

@@ -35,8 +35,36 @@
         }
 
         @screen sm-max {
-            font-size: 12px;
+            font-size: 16px;
             line-height: 20px;
+        }
+    }
+
+    &__goverse {
+        width: 350px;
+        .p-inputtext {
+            width: 280px;
+            @apply py-2 mr-3;
+            background-color: var(--background-color);
+        }
+        .p-inputtext:enabled:hover,.p-inputtext:enabled:focus {
+            border-color: var(--primary--color);
+        }
+        .p-inputtext:enabled:focus {
+            @apply shadow-none;
+        }
+
+        &-button {
+            @apply rounded-full;
+            width: 43px;
+            height: 42px;
+            color: #f6f9fc;
+            background-color: var(--primary--color);
+            transition: all 0.2s ease-in;
+            &:hover {
+                background-color: var( --primary-light-color);
+                transition: all 0.2s ease-in;
+            }
         }
     }
 

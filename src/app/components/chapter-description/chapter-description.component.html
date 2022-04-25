@@ -9,6 +9,20 @@
                     <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">(Chapter-{{chapter.chapter_number}})</p>   
                 </div>
                 <div class="chapter__summary">{{chapter.chapter_summary}}</div>
+                <div class="chapter__goverse flex mt-4">
+                    <p-inputNumber
+                    [(ngModel)]="selectedVerse" mode="decimal" 
+                    inputId="withoutgrouping" [useGrouping]="false"
+                    [min]="0" (onInput)="isLargerNumber = false"
+                    placeholder="Go to any Verse">
+                    </p-inputNumber>
+                    <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)">
+                        <i class="pi pi-angle-right"></i>
+                    </button>
+                </div>
+                <p class="p-error block mt-4" *ngIf="isLargerNumber">
+                    Bhagavad Gita Chapter {{chapter.chapter_number}} has only {{verses.length}}
+                </p>
             </div>
             <img src="../../../assets/krishna.jpg" alt="krishna-arjuna" class="krishna-image md:block md-max:hidden">
         </div>

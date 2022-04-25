@@ -65,18 +65,18 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        const title = `Bhagvad Gita ${res.chapter_number}.${res.verse_number}`
+        const title = `Bhagvad Gita Chepter ${res.chapter_number} Verse ${res.verse_number}`
         const keywords = `bhagavad gita chapter ${res.chapter_number} slok ${res.verse_number}, bhagavad gita adhay ${res.chapter_number} slok ${res.verse_number}`
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
-        this._canonicalService.updateMetaTags({ metaTitle: title, description:`श्रीमद्भगवद्‌गीता: ${res.chapter_number}.${res.verse_number}`, keywords: keywords});
         this.isResponse = true;
-          if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
-            res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {
+        if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
+          res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {
             res.text = res.text.replace('\n\n', '');
             res.text = res.text.replace('।\n\n', '।');
             res.text = res.text.replace('।', '।\n\n');
           }
+        this._canonicalService.updateMetaTags({ metaTitle: title, description:`${res.text}`, keywords: keywords});
         res.commentaries.map(
           summary => {
             if(summary.language === 'hindi' || summary.language === 'english') {

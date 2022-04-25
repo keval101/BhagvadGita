@@ -19,6 +19,8 @@ export class ChapterDescriptionComponent implements OnInit {
   selectedPage: number = 1;
   showPage = 12;
   isMobileScreen: boolean;
+  selectedVerse: number;
+  isLargerNumber: boolean;
   constructor(
     private _dataService: DataService, 
     private _router: Router,
@@ -41,7 +43,7 @@ export class ChapterDescriptionComponent implements OnInit {
       this.chapter = response;
       this.isChapterResponse = true;
 
-      this._metaTitle.setTitle(`${this.chapter.name_translated}`);
+      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number} - ${this.chapter.name_translated}`);
       // update meta tag
       this._canonicalService.createCanonicalLink();
       const keywords = `${this.chapter.name_translated}, bhagavad gita chapter ${this.chapter.chapter_number}, ${this.chapter.name_meaning}, ${this.chapter.name}, ${this.chapter.slug}, bhagavad gita ${this.chapter.chapter_number} adhyay`
@@ -69,7 +71,19 @@ export class ChapterDescriptionComponent implements OnInit {
   }
 
   redirectToVerse(verse: number): void {
-    this._router.navigate(['verse', verse], {relativeTo: this._activatedRoute});
+    console.log(verse);
+    if(verse <= this.verses.length) {
+      this._router.navigate(['verse', verse], {relativeTo: this._activatedRoute});
+    } else {
+      this.isLargerNumber = true;
+    }
   }
+
+  onVerseKeyup(event): void {
+    this.isLargerNumber = false;
+    console.log(event);
+  }
+
+  
   
 }
