@@ -21,6 +21,7 @@ export class ChapterDescriptionComponent implements OnInit {
   isMobileScreen: boolean;
   selectedVerse: number;
   isLargerNumber: boolean;
+  isEnglish = true;
   constructor(
     private _dataService: DataService, 
     private _router: Router,
@@ -35,9 +36,17 @@ export class ChapterDescriptionComponent implements OnInit {
     if(window.screen.width < 600) {
       this.isMobileScreen = true;
     }
+    this.changeLang();
+
+    this._dataService.isLangChage.subscribe(
+      res => {
+        this.changeLang();
+      }
+    )
   }
 
   ngOnInit(): void {
+    console.log(this.isEnglish);
     this._activatedRoute.params.subscribe( params => this.chapterID = params['chapId'] );
     this._dataService.getChapter(this.chapterID).subscribe( response => {
       this.chapter = response;
@@ -50,9 +59,8 @@ export class ChapterDescriptionComponent implements OnInit {
       this._canonicalService.updateMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary, keywords: keywords});
     })
 
-    console.log(this.chapter);
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
-      this.verses = response;
+      // this.verses = response;
       this.isResponse = true;
       this.verses.map(
         response => {
@@ -63,6 +71,25 @@ export class ChapterDescriptionComponent implements OnInit {
             response.text = response.text.replace('।\n\n', '।');
             response.text = response.text.replace('।', '।\n\n');
           }})
+
+      console.log(response);
+      let arra = [];
+      response.map(verse => {
+        verse.translations.map( res => {
+          if(res.author_name === 'Swami Sivananda') {
+            var withNoDigits = res.description.replace(/[0-9]/g, '');
+            withNoDigits = withNoDigits.replace('.', '');
+            withNoDigits = withNoDigits.replace('. ', '');
+            withNoDigits = withNoDigits.replace('"', '');
+            withNoDigits = withNoDigits.replace('  ', ' ');
+            arra.push({
+              text: withNoDigits,
+            })
+          }
+        })
+      })
+      this.verses = arra;
+      console.log(arra);
     })
   }
 
@@ -84,6 +111,14 @@ export class ChapterDescriptionComponent implements OnInit {
     console.log(event);
   }
 
-  
-  
+  changeLang(): void {
+    const selectedLang = JSON.parse(localStorage.getItem('selectedLang'));
+    if(selectedLang.code === 'EN') {
+      this.isEnglish = true;
+      console.log('en');
+    } else {
+      this.isEnglish = false;
+      console.log('hn');
+    }
+  }
 }

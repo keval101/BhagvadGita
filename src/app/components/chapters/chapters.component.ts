@@ -14,9 +14,30 @@ export class ChaptersComponent implements OnInit {
 
   totalChapters = [];
   isResponse: boolean;
+  isEnglish = true;
+  englishSummary = `
+  In the Bhagavad Gita, there are a total of 18 chapters, out of which <span class="primary-text-color">1st to 6th</span> is talk about how one should do his duties and is called
+  <span class="primary-text-color">Karma Yoga</span>.
+  <br>
+  The second set of 6 chapters from chapter <span class="primary-text-color">7th to 12th</span> is called as <span class="primary-text-color">Bhakti Yoga</span>.
+  <br>
+  The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jaana Yoga</span>.
+  `;
+  hindiSummary = `
+    भगवद गीता में कुल 18 अध्याय हैं, जिनमें से <span class="primary-text-color">1 से 6वें</span> अध्याय में बताया गया है कि व्यक्ति को अपने कर्तव्यों का पालन कैसे करना चाहिए और इसे <span class="primary-text-color">कर्म योग</span> कहा जाता है।
+    <span class="primary-text-color">7वें से 12वें</span> अध्याय तक 6 अध्यायों के दूसरे समूह को <span class="primary-text-color">भक्ति योग</span> कहा जाता है।
+    <span class="primary-text-color">13वें से 18वें</span> अध्याय तक 6 अध्यायों के तीसरे समूह को <span class="primary-text-color">जन योग</span> कहा जाता है।
+  `
   constructor(private _dataService: DataService, private _canonicalService: CanonicalService,
               private _router: Router, private _metaTitle: Title) { 
     this.isResponse = false;
+    
+    this.changeLang();
+    this._dataService.isLangChage.subscribe(
+      res => {
+        this.changeLang();
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -32,11 +53,27 @@ export class ChaptersComponent implements OnInit {
     this._dataService.getAllChapters().subscribe(
       response => {
         this.totalChapters = response;
+        this.totalChapters.map(
+          response => {
+            response.name = response.name.replace('योग', ' योग');
+          })
+        console.log(this.totalChapters);
         this.isResponse = true;
       })
   }
 
   gotoChapter(id: number): void {
     this._router.navigate(['chapter', id])
+  }
+
+  changeLang(): void {
+    const selectedLang = JSON.parse(localStorage.getItem('selectedLang'));
+    if(selectedLang.code === 'EN') {
+      this.isEnglish = true;
+      console.log('en');
+    } else {
+      this.isEnglish = false;
+      console.log('hn');
+    }
   }
 }

@@ -25,6 +25,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
     } else {
       this.isMobileScreen = false;
     }
+    const defaultLang = { name: 'English', code: 'EN'}
+    localStorage.setItem('selectedLang', JSON.stringify(defaultLang));
   }
 
   ngAfterContentChecked(): void {

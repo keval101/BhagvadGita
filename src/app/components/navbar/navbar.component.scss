@@ -93,3 +93,23 @@ header {
         }
     }
 }
+
+.langague {
+    @apply flex items-center cursor-pointer;
+
+    &__icon {
+        @apply mr-2;
+        height: 15px;
+    }
+
+    .p-dropdown {
+        @apply bg-transparent;
+        border: none;
+    }
+    .p-dropdown:not(.p-disabled).p-focus {
+        box-shadow: none;
+    }
+    .p-dropdown .p-dropdown-label {
+        @apply p-0;
+    }
+}

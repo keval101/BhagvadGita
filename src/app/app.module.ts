@@ -23,6 +23,7 @@ import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,13 +47,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
     ButtonModule,
     DialogModule,
     InputTextModule,
-    InputNumberModule
-  ],
-  providers: [{
-      provide: HTTP_INTERCEPTORS,
-      useClass: APIinterceptorService,
-      multi: true,
-    }
+    InputNumberModule,
+    DropdownModule
   ],
   bootstrap: [AppComponent]
 })

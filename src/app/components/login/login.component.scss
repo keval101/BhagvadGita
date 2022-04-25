@@ -11,10 +11,8 @@
     &__container {
         height: calc(100vh - 60px);
     }
-
-    &__left-panel,
-    &__right-panel,
-    &__card {
+    &__container, &__left-panel,
+    &__right-panel, &__card {
         @apply flex flex-col justify-center items-center;
     }
 

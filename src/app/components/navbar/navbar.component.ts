@@ -1,15 +1,23 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent implements OnInit {
 
   @Output() closeSidebar = new EventEmitter();
-  constructor() { }
+  langague = [ 
+    { name: 'Hindi', code: 'HN' },
+    { name: 'English', code: 'EN'}
+  ]
+  selectedLang;
+  constructor(private _dataService: DataService) { }
   ngOnInit(): void {
+    this.selectedLang = JSON.parse(localStorage.getItem('selectedLang'));
   }
 
   closeMenu(): void {
@@ -18,6 +26,12 @@ export class NavbarComponent implements OnInit {
         this.closeSidebar.emit();
       }, 200);
      }
+  }
+
+  changeLang(lang): void {
+    console.log(lang);
+    localStorage.setItem('selectedLang', JSON.stringify(lang));
+    this._dataService.isLangChage.next();
   }
 
 }
