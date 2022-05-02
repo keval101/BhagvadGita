@@ -60,7 +60,7 @@ export class ChapterDescriptionComponent implements OnInit {
     })
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
-      // this.verses = response;
+      this.verses = response;
       this.isResponse = true;
       this.verses.map(
         response => {
@@ -78,17 +78,17 @@ export class ChapterDescriptionComponent implements OnInit {
         verse.translations.map( res => {
           if(res.author_name === 'Swami Sivananda') {
             var withNoDigits = res.description.replace(/[0-9]/g, '');
-            withNoDigits = withNoDigits.replace('.', '');
-            withNoDigits = withNoDigits.replace('. ', '');
+            withNoDigits = withNoDigits.replaceAll('.', '');
             withNoDigits = withNoDigits.replace('"', '');
             withNoDigits = withNoDigits.replace('  ', ' ');
+            withNoDigits = withNoDigits.replaceAll('\n', '');
             arra.push({
               text: withNoDigits,
             })
           }
         })
       })
-      this.verses = arra;
+      // this.verses = arra;
       console.log(arra);
     })
   }
