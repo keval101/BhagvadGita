@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, AfterContentChecked {
       { name: 'author', content: 'Keval Vadhiya' },
     ])
 
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if( /Android|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       this.isMobileScreen = true;
     } else {
       this.isMobileScreen = false;
