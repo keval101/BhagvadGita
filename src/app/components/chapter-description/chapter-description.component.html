@@ -37,7 +37,7 @@
     <div class="verses grid justify-center mt-10" >
         <div *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer" (click)="redirectToVerse(verse.verse_number)">
             <div class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</div>
-            <div class="verses__box-text py-5 flex-grow common-flex-center">{{verse.text}}</div>
+            <div class="verses__box-text p-5 flex-grow common-flex-center" [ngStyle]="{'line-height': isEnglish ? '26px' : '16px'}">{{verse.text}}</div>
         </div>
     </div>
 
@@ -83,9 +83,9 @@
     </div>
 
     <div class="verses grid justify-center mt-10" >
-        <div *ngFor="let verse of verses; let i as index | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer" (click)="redirectToVerse(i)">
-            <div class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{i}}</div>
-            <div class="verses__box-text py-5 flex-grow common-flex-center">{{verse.text}}</div>
+        <div *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer" (click)="redirectToVerse(i)">
+            <div class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</div>
+            <div class="verses__box-text py-5 flex-grow common-flex-center" style="line-height: 16px;">{{verse.text}}</div>
         </div>
     </div>
 

@@ -75,7 +75,7 @@
 }
 
 .verses {
-    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(auto-fill, 400px);
     grid-gap: 30px;
 
     @screen md-max {
@@ -89,7 +89,7 @@
     &__box {
         // width: 350px;
         min-height: 165px;
-        max-height: 220px;
+        max-height: auto;
         line-height: 16px;
         border: 1px solid var(--primary-light-color);
         transition: all 0.2s ease-in;
@@ -100,7 +100,7 @@
         }
     
         &-text {
-            line-height: 16px;
+            // line-height: 16px;
         }
     
         &:hover {

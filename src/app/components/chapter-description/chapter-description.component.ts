@@ -22,6 +22,8 @@ export class ChapterDescriptionComponent implements OnInit {
   selectedVerse: number;
   isLargerNumber: boolean;
   isEnglish = true;
+  englishVerses = []
+  hindiVerses = []
   constructor(
     private _dataService: DataService, 
     private _router: Router,
@@ -60,7 +62,8 @@ export class ChapterDescriptionComponent implements OnInit {
     })
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
-      this.verses = response;
+      this.hindiVerses = response;
+      // this.verses = response;
       this.isResponse = true;
       this.verses.map(
         response => {
@@ -73,23 +76,23 @@ export class ChapterDescriptionComponent implements OnInit {
           }})
 
       console.log(response);
-      let arra = [];
       response.map(verse => {
         verse.translations.map( res => {
-          if(res.author_name === 'Swami Sivananda') {
+          if(res.author_name === 'Shri Purohit Swami') {
             var withNoDigits = res.description.replace(/[0-9]/g, '');
             withNoDigits = withNoDigits.replaceAll('.', '');
             withNoDigits = withNoDigits.replace('"', '');
             withNoDigits = withNoDigits.replace('  ', ' ');
             withNoDigits = withNoDigits.replaceAll('\n', '');
-            arra.push({
+            this.englishVerses.push({
               text: withNoDigits,
             })
           }
         })
       })
-      // this.verses = arra;
-      console.log(arra);
+      this.changeLang();
+      // this.verses = this.englishVerses;
+      console.log(this.englishVerses);
     })
   }
 
@@ -115,9 +118,12 @@ export class ChapterDescriptionComponent implements OnInit {
     const selectedLang = JSON.parse(localStorage.getItem('selectedLang'));
     if(selectedLang.code === 'EN') {
       this.isEnglish = true;
+      this.verses = this.englishVerses;
       console.log('en');
     } else {
       this.isEnglish = false;
+      this.verses = this.hindiVerses;
+      console.log(this.verses)
       console.log('hn');
     }
   }
