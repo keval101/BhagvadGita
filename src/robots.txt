@@ -1,3 +1,4 @@
-User-Agent: *
+User-agent: *
 Disallow:
+Allow: /
 Sitemap: https://bhagavad-gita.netlify.app/sitemap.xml
