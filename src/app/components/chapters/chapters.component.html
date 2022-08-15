@@ -9,7 +9,7 @@
         The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jaana Yoga</span>.
     </div>
     <div class="chapters__container grid justify-center" *ngIf="isResponse">
-        <div class="chapters__card p-4 rounded-lg flex justify-center flex-col hover:cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
+        <div class="chapters__card p-4 rounded-lg flex justify-center flex-col cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
             <h3 class="font-normal text-2xl">{{chapter.name_translated}}</h3>
             <div class="flex">
                 <span class="chapters__text text-gray-500 mr-2">Chapter {{chapter.id}},</span>
