@@ -49,7 +49,7 @@
     </div>
 </section>
 
-<p-dialog header="Summary" [(visible)]="isSummaryOpen" class="summary__dialog" [draggable]="false" [modal]="true">
+<p-dialog header="Summary" [(visible)]="isSummaryOpen" [dismissableMask]="true" class="summary__dialog" [draggable]="false" [modal]="true">
     <p>{{selectedSummary.description}}</p>
     <p class="summary__card-author mt-5 flex justify-end ml-auto">- {{selectedSummary.author}}</p>
 </p-dialog>

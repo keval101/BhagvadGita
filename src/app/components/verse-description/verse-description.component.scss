@@ -124,9 +124,6 @@
         .p-component-overlay-enter {
             @apply animate-none;
         }
-        .p-component-overlay {
-            @apply bg-transparent;
-        }
     }
 
     &__card {
@@ -168,8 +165,9 @@
 }
 
 .mobile-button {
-    @apply flex hidden w-full absolute justify-between mt-2;
-    bottom: 32px;
+    @apply flex hidden  absolute justify-between mt-2;
+    width: 95vw;
+    top: 50%;
 
     @screen sm-max {
         @apply flex;

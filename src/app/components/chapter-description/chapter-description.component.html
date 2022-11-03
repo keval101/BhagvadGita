@@ -13,7 +13,7 @@
                     <p-inputNumber
                     [(ngModel)]="selectedVerse" mode="decimal" 
                     inputId="withoutgrouping" [useGrouping]="false"
-                    [min]="0" (onInput)="isLargerNumber = false"
+                    [min]="1" (onInput)="isLargerNumber = false"
                     placeholder="Go to any Verse">
                     </p-inputNumber>
                     <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)">
