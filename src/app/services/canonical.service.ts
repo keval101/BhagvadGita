@@ -32,6 +32,8 @@ export class CanonicalService {
     this._meta.updateTag( { property: 'og:description', content: tagsDesctiption.description }, "property='og:description'");
     this._meta.updateTag( { property: 'og:image:secure_url', content: 'https://bhagavad-gita.netlify.app/assets/krishna-arjuna.jpg' }, "property='og:image:secure_url'");
 
+    
+    this._meta.updateTag({ name: 'twitter:creator', content: `@KevalVadhiya`}, "name='twitter:creator'")
     this._meta.updateTag({ name: 'twitter:site', content: `@BhagavadGita`}, "name='twitter:site'")
     this._meta.updateTag({ name: 'twitter:title', content: tagsDesctiption.metaTitle}, "name='twitter:title'")
     this._meta.updateTag({ name: 'twitter:description', content: tagsDesctiption.description}, "name='twitter:description'")
