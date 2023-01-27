@@ -21,7 +21,7 @@ export class ChaptersComponent implements OnInit {
 
   ngOnInit(): void {
     this._metaTitle.setTitle('Bhagvad Gita Chapters');
-    const keywords = 'Arjuna Visada Yoga,Sankhya Yoga,Karma Yoga,Jnana Karma Sanyasa Yoga,Karma Sanyasa Yoga,Dhyana Yoga,Gyaan Vigyana Yoga,Akshara Brahma Yoga,Raja Vidya Yoga,Vibhooti Yoga,Vishwaroopa Darshana Yoga,Bhakti Yoga,Ksetra Ksetrajna Vibhaaga Yoga,Gunatraya Vibhaga Yoga,Purushottama Yoga,Daivasura Sampad Vibhaga Yoga,Sraddhatraya Vibhaga Yoga,Moksha Sanyaas Yoga'
+    const keywords = 'Arjuna Visada Yoga,Sankhya Yoga,Karma Yoga,Jnana Karma Sanyasa Yoga,Karma Sanyasa Yoga,Dhyana Yoga,Gyaan Vigyana Yoga,Akshara Brahma Yoga,Raja Vidya Yoga,Vibhooti Yoga,Vishwaroopa Darshana Yoga,Bhakti Yoga,Ksetra Ksetrajna Vibhaaga Yoga,Gunatraya Vibhaga Yoga,Purushottama Yoga,Daivasura Sampad Vibhaga Yoga,Sraddhatraya Vibhaga Yoga,Moksha Sanyaas Yoga, Bhagavad Gita, Gita, Bhagavad Gita teachings, Krishna, Arjuna, Hinduism, Indian philosophy, Yoga, Karma, Dharma, Bhakti yoga, Meditation, Vedanta, Upanishads, Bhagavad Gita quotes, Bhagavad Gita in English, Bhagavad Gita translations, Bhagavad Gita study guide, Bhagavad Gita for beginners, Bhagavad Gita audio'
 
     this._canonicalService.createCanonicalLink();
     this._canonicalService.updateMetaTags({metaTitle: 'Bhagvad Gita Chapters',
