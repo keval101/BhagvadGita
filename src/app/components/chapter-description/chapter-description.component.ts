@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { pluck, tap } from 'rxjs/operators';
 import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -21,6 +23,13 @@ export class ChapterDescriptionComponent implements OnInit {
   isMobileScreen: boolean;
   selectedVerse: number;
   isLargerNumber: boolean;
+  
+  readonly chapters$: Observable<any> = this._activatedRoute.data
+  .pipe(
+    pluck('chapter'),
+    tap(chapter => console.log(chapter))
+);
+
   constructor(
     private _dataService: DataService, 
     private _router: Router,
