@@ -12,7 +12,7 @@ const MockBrowser = require('mock-browser').mocks.MockBrowser;
 const mock = new MockBrowser();
 
 global['navigator'] = mock.getNavigator();
-
+const cache = require('memory-cache');
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -37,9 +37,19 @@ export function app(): express.Express {
   }));
 
   // All regular routes use the Universal engine
-  server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+  server.get('*', (req: any, res: any) => {
+    const entry = cache.get(req.originalUrl); // check if we have a cache entry
+    if (entry) {
+      res.send(entry);                        // send the cache entry
+    } else {
+      res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] }, (err:any, html:any) => {
+        cache.put(req.originalUrl, html, 20000);     // save the HTML in the cache
+        res.send(html);
+      });
+    }
+    
   });
+
 
   return server;
 }
