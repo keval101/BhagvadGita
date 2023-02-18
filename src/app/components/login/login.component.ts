@@ -36,10 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(): void {
-    console.log(this.loginForm.value);
   }
   signUpUser(): void {
-    console.log(this.signUpForm.value);
   }
   back(): void {
     this.isBackClick = true;

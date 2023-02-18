@@ -14,7 +14,7 @@
                     [(ngModel)]="selectedVerse" mode="decimal" 
                     inputId="withoutgrouping" [useGrouping]="false"
                     [min]="1" (onInput)="isLargerNumber = false"
-                    placeholder="Go to any Verse">
+                    placeholder="Go to any Verse" (keydown)="keydownOnVerse(selectedVerse, $event)">
                     </p-inputNumber>
                     <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)">
                         <i class="pi pi-angle-right"></i>

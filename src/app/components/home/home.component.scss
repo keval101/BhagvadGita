@@ -20,16 +20,7 @@
     }
 }
 
-.redirect-button {
-    width: 220px;
-    color: #f6f9fc;
-    background-color: var(--primary--color);
-    transition: all 0.2s ease-in;
-    &:hover {
-        background-color: var( --primary-light-color);
-        transition: all 0.2s ease-in;
-    }
-}
+
 
 .right-arrow-icon {
     animation: ping 2s ease infinite;

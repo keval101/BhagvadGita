@@ -65,3 +65,7 @@
     @apply hidden;
     transition: all 0.4s ease-in;
 }
+
+::ng-deep .p-toast .p-toast-message .p-toast-message-content {
+    border: none;
+}

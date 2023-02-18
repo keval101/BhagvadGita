@@ -4,7 +4,7 @@
         <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
     </div>
 
-    <div class="common-flex-center" *ngIf="isResponse">
+    <div class="common-flex-center" *ngIf="isResponse && verse">
 
         <button pButton pRipple type="button" icon="pi pi-angle-left" class="p-button-rounded left-icon" (click)="previousSloka()"></button>
 
@@ -37,7 +37,19 @@
 
     </div>
 
-    <div class="summary" *ngIf="isResponse">
+    <div class="common-flex-center no-verse" *ngIf="isResponse && !verse">
+        <div class="verse__card relative flex flex-col items-center rounded-sm p-10" *ngIf="isResponse">
+            <img src="assets/krishnaArjunaa.jpg" alt="krishna-Arjuna" class="verse__card-image">
+    
+            <h1 class="verse__card-title primary-text-color my-7 font-thin no-verse-title">No Verse Found</h1>
+            <button class="button mt-5" 
+            [routerLink]="['/chapter', chapterNumber]">
+                Go Back To Chapter {{chapterNumber}}
+            </button>
+        </div>
+    </div>
+
+    <div class="summary" *ngIf="isResponse && summaries.length">
         <h1 class="summary__title primary-text-color font-semibold text-4xl mb-11">Summary</h1>
 
         <div class="summary__container grid justify-center">

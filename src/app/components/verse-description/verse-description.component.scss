@@ -113,13 +113,18 @@
         .p-dialog-content {
             @apply overflow-y-scroll;
             max-height: 600px;
+            border-radius: 0 0 3px 3px;
             p {
                 line-height: 32px;
                 font-size: 18px
             }
         }
         .p-dialog-header {
-            color: var(--primary--color)
+            @apply text-white py-4 px-6;
+            background-color: var(--primary--color)
+        }
+        .p-dialog .p-dialog-header .p-dialog-header-icon {
+            @apply text-white;
         }
         .p-component-overlay-enter {
             @apply animate-none;
@@ -180,5 +185,13 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+.no-verse {
+    height: calc(100vh - 200px);
+
+    &-title {
+        @apply mt-4 mb-0;
     }
 }

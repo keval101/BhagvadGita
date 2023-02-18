@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
@@ -83,11 +84,13 @@ export class VerseDescriptionComponent implements OnInit {
               this.summaries.push(summary);
             }
           })
+      },
+      (error) => {
+        this.isResponse = true;
       })
   }
 
   readSummary(summary_description, summary_author): void {
-    console.log(summary_description, summary_author);
     this.selectedSummary = {
       description: summary_description,
       author: summary_author

@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { pluck, tap } from 'rxjs/operators';
 import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -23,12 +21,6 @@ export class ChapterDescriptionComponent implements OnInit {
   isMobileScreen: boolean;
   selectedVerse: number;
   isLargerNumber: boolean;
-  
-  readonly chapters$: Observable<any> = this._activatedRoute.data
-  .pipe(
-    pluck('chapter'),
-    tap(chapter => console.log(chapter))
-);
 
   constructor(
     private _dataService: DataService, 
@@ -59,7 +51,6 @@ export class ChapterDescriptionComponent implements OnInit {
       this._canonicalService.updateMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary, keywords: keywords});
     })
 
-    console.log(this.chapter);
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
       this.verses = response;
       this.isResponse = true;
@@ -80,19 +71,17 @@ export class ChapterDescriptionComponent implements OnInit {
   }
 
   redirectToVerse(verse: number): void {
-    console.log(verse);
     if(verse <= this.verses.length) {
       this._router.navigate(['verse', verse], {relativeTo: this._activatedRoute});
     } else {
       this.isLargerNumber = true;
     }
   }
-
-  onVerseKeyup(event): void {
-    this.isLargerNumber = false;
-    console.log(event);
-  }
-
   
-  
+  keydownOnVerse(verse: number, event: any) {
+    if(event.key === 'Enter') {
+      this.redirectToVerse(verse)
+    }
+  } 
+
 }
