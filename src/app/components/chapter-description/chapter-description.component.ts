@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CanonicalService } from 'src/app/services/canonical.service';
@@ -21,21 +22,27 @@ export class ChapterDescriptionComponent implements OnInit {
   isMobileScreen: boolean;
   selectedVerse: number;
   isLargerNumber: boolean;
+  isBrowser: boolean;
 
   constructor(
     private _dataService: DataService, 
     private _router: Router,
     private _activatedRoute: ActivatedRoute, private _meta: Meta,
-    private _metaTitle: Title, private _canonicalService: CanonicalService) { 
-    if(window.screen.width < 1367) {
-      this.showPage = 9;
-    }
-    if(window.screen.width < 768) {
-      this.showPage = 8;
-    }
-    if(window.screen.width < 600) {
-      this.isMobileScreen = true;
-    }
+    private _metaTitle: Title, private _canonicalService: CanonicalService,
+    @Inject(PLATFORM_ID) private platformId: any) { 
+      this.isBrowser = isPlatformBrowser(this.platformId);
+
+      if (this.isBrowser) {
+        if(window.screen.width < 1367) {
+          this.showPage = 9;
+        }
+        if(window.screen.width < 768) {
+          this.showPage = 8;
+        }
+        if(window.screen.width < 600) {
+          this.isMobileScreen = true;
+        }
+      }
   }
 
   ngOnInit(): void {

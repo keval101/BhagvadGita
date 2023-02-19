@@ -1,5 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { IMetaTags } from '../interface/interface';
 
@@ -8,17 +8,22 @@ import { IMetaTags } from '../interface/interface';
 })
 
 export class CanonicalService {
+  isBrowser: boolean;
 
-  constructor(@Inject(DOCUMENT) private dom, private _meta: Meta) { }
+  constructor(@Inject(DOCUMENT) private dom, private _meta: Meta, @Inject(PLATFORM_ID) private platformId: any) { 
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
   pageUrl: string;
   tagsDesctiption;
   createCanonicalLink(url?: string) {
-    let canURL = url == undefined ? this.dom.URL : url;
-    this.pageUrl = canURL;
-    let link: HTMLLinkElement = this.dom.createElement('link');
-    link.setAttribute('rel', 'canonical');
-    this.dom.head.appendChild(link);
-    link.setAttribute('href', canURL);
+    if(this.isBrowser) {
+      let canURL = url == undefined ? this.dom.URL : url;
+      this.pageUrl = canURL;
+      let link: HTMLLinkElement = this.dom.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.dom.head.appendChild(link);
+      link.setAttribute('href', canURL);
+    }
   }
 
   updateMetaTags(tagsDesctiption: IMetaTags): void {

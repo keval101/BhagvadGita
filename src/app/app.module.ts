@@ -48,7 +48,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
     InputTextModule,
     InputNumberModule
   ],
-  providers: [{
+  providers: [
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: APIinterceptorService,
       multi: true,
