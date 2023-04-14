@@ -33,7 +33,8 @@
               "src/dynamicRoutes.txt",
               "src/robots.txt",
               "src/sitemap.xml",
-              "src/googlec9f6dcd9e9ade87a.html"
+              "src/googlec9f6dcd9e9ade87a.html",
+              "src/ads.txt"
             ],
             "styles": [
               "src/styles.scss",
