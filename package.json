@@ -28,7 +28,7 @@
     "memory-cache": "^0.2.0",
     "ngx-pagination": "^5.1.1",
     "primeicons": "^5.0.0",
-    "primeng": "^13.2.0",
+    "primeng": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
