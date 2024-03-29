@@ -29,8 +29,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/_redirects",
-              "src/dynamicRoutes.txt",
               "src/robots.txt",
               "src/sitemap.xml",
               "src/googlec9f6dcd9e9ade87a.html",
