@@ -51,11 +51,11 @@ export class ChapterDescriptionComponent implements OnInit {
       this.chapter = response;
       this.isChapterResponse = true;
 
-      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number} - ${this.chapter.name_translated}`);
+      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}`);
       // update meta tag
       this._canonicalService.createCanonicalLink();
-      const keywords = `${this.chapter.name_translated}, bhagavad gita chapter ${this.chapter.chapter_number}, ${this.chapter.name_meaning}, ${this.chapter.name}, ${this.chapter.slug}, bhagavad gita ${this.chapter.chapter_number} adhyay`
-      this._canonicalService.updateMetaTags({ metaTitle: this.chapter.name_translated, description: this.chapter.chapter_summary, keywords: keywords});
+      const keywords = ` Bhagavad Gita Chapter ${this.chapter.chapter_number}, ${this.chapter.name_translated} Bhagavad Gita, Bhagavad Gita ${this.chapter.chapter_number} summary`
+      this._canonicalService.updateMetaTags({ metaTitle: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}`, description: `Understand the essence of Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} with a detailed description and a list of all verses.`, keywords: keywords});
     })
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {

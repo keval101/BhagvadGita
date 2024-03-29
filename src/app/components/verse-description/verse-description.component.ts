@@ -66,8 +66,9 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        const title = `Bhagvad Gita Chepter ${res.chapter_number} Verse ${res.verse_number}`
-        const keywords = `bhagavad gita chapter ${res.chapter_number} slok ${res.verse_number}, bhagavad gita adhay ${res.chapter_number} slok ${res.verse_number}`
+        const title = `Bhagavad Gita  ${res.chapter_number}.${res.verse_number}`
+        const description = `Gain insights into Bhagavad Gita ${res.chapter_number}.${res.verse_number} with a detailed explanation and summary.`
+        const keywords = `Bhagavad Gita ${res.chapter_number}.${res.verse_number}, Bhagavad Gita verse explanation, Bhagavad Gita verse summary`
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
         this.isResponse = true;
@@ -77,7 +78,7 @@ export class VerseDescriptionComponent implements OnInit {
             res.text = res.text.replace('।\n\n', '।');
             res.text = res.text.replace('।', '।\n\n');
           }
-        this._canonicalService.updateMetaTags({ metaTitle: title, description:`${res.text}`, keywords: keywords});
+        this._canonicalService.updateMetaTags({ metaTitle: title, description: description, keywords: keywords});
         res.commentaries.map(
           summary => {
             if(summary.language === 'hindi' || summary.language === 'english') {

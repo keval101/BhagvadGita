@@ -20,12 +20,12 @@ export class ChaptersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._metaTitle.setTitle('Bhagvad Gita Chapters');
-    const keywords = 'Arjuna Visada Yoga,Sankhya Yoga,Karma Yoga,Jnana Karma Sanyasa Yoga,Karma Sanyasa Yoga,Dhyana Yoga,Gyaan Vigyana Yoga,Akshara Brahma Yoga,Raja Vidya Yoga,Vibhooti Yoga,Vishwaroopa Darshana Yoga,Bhakti Yoga,Ksetra Ksetrajna Vibhaaga Yoga,Gunatraya Vibhaga Yoga,Purushottama Yoga,Daivasura Sampad Vibhaga Yoga,Sraddhatraya Vibhaga Yoga,Moksha Sanyaas Yoga, Bhagavad Gita, Gita, Bhagavad Gita teachings, Krishna, Arjuna, Hinduism, Indian philosophy, Yoga, Karma, Dharma, Bhakti yoga, Meditation, Vedanta, Upanishads, Bhagavad Gita quotes, Bhagavad Gita in English, Bhagavad Gita translations, Bhagavad Gita study guide, Bhagavad Gita for beginners, Bhagavad Gita audio'
+    this._metaTitle.setTitle('Bhagavad Gita Chapters: A Complete List');
+    const keywords = 'Arjuna Visada Yoga,Sankhya Yoga,Karma Yoga,Jnana Karma Sanyasa Yoga,Karma Sanyasa Yoga,Dhyana Yoga,Gyaan Vigyana Yoga,Akshara Brahma Yoga,Raja Vidya Yoga,Vibhooti Yoga,Vishwaroopa Darshana Yoga,Bhakti Yoga,Ksetra Ksetrajna Vibhaaga Yoga,Gunatraya Vibhaga Yoga,Purushottama Yoga,Daivasura Sampad Vibhaga Yoga,Sraddhatraya Vibhaga Yoga,Moksha Sanyaas Yoga, Bhagavad Gita, Gita, Bhagavad Gita teachings, Krishna, Arjuna, Hinduism, Indian philosophy, Yoga, Karma, Dharma, Bhakti yoga, Meditation, Vedanta, Upanishads, Bhagavad Gita quotes, Bhagavad Gita in English, Bhagavad Gita translations, Bhagavad Gita study guide, Bhagavad Gita for beginners, Bhagavad Gita audio, Bhagavad Gita chapters, List of Bhagavad Gita chapters, Bhagavad Gita chapter summaries, Bhagavad Gita online by chapter'
 
     this._canonicalService.createCanonicalLink();
-    this._canonicalService.updateMetaTags({metaTitle: 'Bhagvad Gita Chapters',
-    description: 'In the Bhagavad Gita, there are a total of 18 chapters, out of which 1st to 6th is talk about how one should do his duties and is called Karma Yoga.The second set of 6 chapters from chapter 7th to 12th is called as Bhakti Yoga.The third set of 6 chapters from chapter 13th to 18th is called as Jaana Yoga',
+    this._canonicalService.updateMetaTags({metaTitle: 'Bhagavad Gita Chapters: A Complete List',
+    description: 'Explore all 18 chapters of the Bhagavad Gita with clear descriptions. Jump right to the chapter that interests you and delve into its timeless wisdom.',
     keywords: keywords
   });    
 
