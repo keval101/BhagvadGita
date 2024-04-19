@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://bhagavad-gita.netlify.app/sitemap.xml
+Sitemap: https://bhagvad-gita.vercel.app/sitemap.xml
