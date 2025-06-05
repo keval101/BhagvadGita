@@ -66,9 +66,10 @@ export class VerseDescriptionComponent implements OnInit {
     this._dataService.getVerse(this.chapterNumber, this.verseNumber).subscribe(
       res => {
         this.verse = res;
-        const title = `Bhagavad Gita  ${res.chapter_number}.${res.verse_number}`
-        const description = `Gain insights into Bhagavad Gita ${res.chapter_number}.${res.verse_number} with a detailed explanation and summary.`
-        const keywords = `Bhagavad Gita ${res.chapter_number}.${res.verse_number}, Bhagavad Gita verse explanation, Bhagavad Gita verse summary`
+        const title = `Bhagavad Gita Chapter ${res.chapter_number}, Verse ${res.verse_number} – Meaning & Explanation`
+        const description = `Read Bhagavad Gita Chapter ${res.chapter_number}, Verse ${res.verse_number} in Sanskrit with English translation and detailed explanation. Discover the spiritual meaning and essence of this verse.`;
+        const keywords = `Bhagavad Gita ${res.chapter_number}.${res.verse_number},Gita sloka ${res.chapter_number}.${res.verse_number} meaning,Bhagavad Gita English translation,Sanskrit shlokas with meaning,Bhagavad Gita verse ${res.chapter_number}.${res.verse_number} explanation,Gita verse ${res.chapter_number}.${res.verse_number} summary`
+
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
         this.isResponse = true;

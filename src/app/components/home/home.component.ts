@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
               private _metaTitle: Title, private _canonicalService: CanonicalService) { }
 
   ngOnInit(): void {
-    this._metaTitle.setTitle('Explore the Bhagavad Gita: Verses, Descriptions, and Summaries');
+    this._metaTitle.setTitle('Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning');
     this._canonicalService.createCanonicalLink();
-    const description = 'Dive deep into the Bhagavad Gita\'s wisdom. Our website offers the complete Bhagavad Gita in English, with chapter descriptions, verse-by-verse summaries, and easy navigation.'
-    const keywords = ' Bhagavad Gita, Bhagavad Gita in English, Bhagavad Gita verses, Bhagavad Gita summaries, Bhagavad Gita online, Bhagavad Gita for beginners'
+    const description = 'Read the complete Bhagavad Gita online in Sanskrit with English translation and meaning. Explore the timeless wisdom of Lord Krishna’s teachings on life, duty, devotion, and spirituality.'
+    const keywords = ' Bhagavad Gita, Bhagvad Gita, Srimad Bhagavad Gita, Bhagavad Gita in English, Bhagavad Gita Sanskrit, Gita with meaning, Krishna teachings, Hindu scripture, Gita online, Gita slokas, Bhagavad Gita chapters, Bhagavad Gita verses, Gita quotes, spiritual guidance, karma yoga, jnana yoga, bhakti yoga'
     this._canonicalService.updateMetaTags({
-      metaTitle: 'Explore the Bhagavad Gita: Verses, Descriptions, and Summaries',
+      metaTitle: 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning',
       description: description,
       keywords: keywords
     })

@@ -51,11 +51,12 @@ export class ChapterDescriptionComponent implements OnInit {
       this.chapter = response;
       this.isChapterResponse = true;
 
-      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}`);
+      this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} | Summary & Verses`);
       // update meta tag
       this._canonicalService.createCanonicalLink();
-      const keywords = ` Bhagavad Gita Chapter ${this.chapter.chapter_number}, ${this.chapter.name_translated} Bhagavad Gita, Bhagavad Gita ${this.chapter.chapter_number} summary`
-      this._canonicalService.updateMetaTags({ metaTitle: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}`, description: `Understand the essence of Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} with a detailed description and a list of all verses.`, keywords: keywords});
+      const keywords = `Bhagavad Gita Chapter ${this.chapter.chapter_number},${this.chapter.name_translated},Bhagavad Gita ${this.chapter.chapter_number} summary,${this.chapter.name_translated} meaning,Gita Chapter ${this.chapter.chapter_number},Chapter ${this.chapter.chapter_number} of Bhagavad Gita,${this.chapter.name_translated} explanation,Bhagavad Gita slokas Chapter ${this.chapter.chapter_number},${this.chapter.name_translated} Sanskrit verses`;
+
+      this._canonicalService.updateMetaTags({ metaTitle: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} | Summary & Verses`, description: `Read Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}. Understand the meaning of this chapter and read all Sanskrit verses with explanations.`, keywords: keywords});
     })
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {
