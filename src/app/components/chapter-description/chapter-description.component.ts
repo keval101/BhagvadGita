@@ -52,11 +52,37 @@ export class ChapterDescriptionComponent implements OnInit {
       this.isChapterResponse = true;
 
       this._metaTitle.setTitle(`Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} | Summary & Verses`);
-      // update meta tag
       this._canonicalService.createCanonicalLink();
       const keywords = `Bhagavad Gita Chapter ${this.chapter.chapter_number},${this.chapter.name_translated},Bhagavad Gita ${this.chapter.chapter_number} summary,${this.chapter.name_translated} meaning,Gita Chapter ${this.chapter.chapter_number},Chapter ${this.chapter.chapter_number} of Bhagavad Gita,${this.chapter.name_translated} explanation,Bhagavad Gita slokas Chapter ${this.chapter.chapter_number},${this.chapter.name_translated} Sanskrit verses`;
-
-      this._canonicalService.updateMetaTags({ metaTitle: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} | Summary & Verses`, description: `Read Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}. Understand the meaning of this chapter and read all Sanskrit verses with explanations.`, keywords: keywords});
+      this._canonicalService.updateMetaTags({
+        metaTitle: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} | Summary & Verses`,
+        description: `Read Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}. Understand the meaning of this chapter and read all Sanskrit verses with explanations.`,
+        keywords: keywords
+      });
+      this._canonicalService.setStructuredData({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': 'https://bhagvad-gita.vercel.app/home'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'All 18 Chapters',
+            'item': 'https://bhagvad-gita.vercel.app/chapters'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
+            'name': `Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated}`,
+            'item': `https://bhagvad-gita.vercel.app/chapter/${this.chapter.chapter_number}`
+          }
+        ]
+      });
     })
 
     this._dataService.getAllVerses(this.chapterID).subscribe( response => {

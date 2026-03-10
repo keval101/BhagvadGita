@@ -72,6 +72,65 @@ export class VerseDescriptionComponent implements OnInit {
 
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
+        this._canonicalService.setStructuredData([
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://bhagvad-gita.vercel.app/home'
+              },
+              {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'All 18 Chapters',
+                'item': 'https://bhagvad-gita.vercel.app/chapters'
+              },
+              {
+                '@type': 'ListItem',
+                'position': 3,
+                'name': `Chapter ${res.chapter_number}`,
+                'item': `https://bhagvad-gita.vercel.app/chapter/${res.chapter_number}`
+              },
+              {
+                '@type': 'ListItem',
+                'position': 4,
+                'name': `Verse ${res.verse_number}`,
+                'item': `https://bhagvad-gita.vercel.app/chapter/${res.chapter_number}/verse/${res.verse_number}`
+              }
+            ]
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            'headline': title,
+            'description': description,
+            'url': `https://bhagvad-gita.vercel.app/chapter/${res.chapter_number}/verse/${res.verse_number}`,
+            'image': 'https://bhagvad-gita.vercel.app/assets/krishna-arjuna.jpg',
+            'author': {
+              '@type': 'Person',
+              'name': 'Ved Vyasa'
+            },
+            'publisher': {
+              '@type': 'Organization',
+              'name': 'Bhagavad Gita Online',
+              'url': 'https://bhagvad-gita.vercel.app',
+              'logo': {
+                '@type': 'ImageObject',
+                'url': 'https://bhagvad-gita.vercel.app/assets/logo2.png'
+              }
+            },
+            'inLanguage': 'en',
+            'isPartOf': {
+              '@type': 'Book',
+              'name': 'Bhagavad Gita',
+              'url': 'https://bhagvad-gita.vercel.app'
+            }
+          }
+        ]);
         this.isResponse = true;
         if(res.chapter_number === 12 || res.chapter_number === 13|| res.chapter_number === 14 || res.chapter_number === 15 ||
           res.chapter_number === 16 || res.chapter_number === 17 || res.chapter_number === 18) {

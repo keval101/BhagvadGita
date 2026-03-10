@@ -16,13 +16,31 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this._metaTitle.setTitle('Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning');
     this._canonicalService.createCanonicalLink();
-    const description = 'Read the complete Bhagavad Gita online in Sanskrit with English translation and meaning. Explore the timeless wisdom of Lord Krishna’s teachings on life, duty, devotion, and spirituality.'
-    const keywords = ' Bhagavad Gita, Bhagvad Gita, Srimad Bhagavad Gita, Bhagavad Gita in English, Bhagavad Gita Sanskrit, Gita with meaning, Krishna teachings, Hindu scripture, Gita online, Gita slokas, Bhagavad Gita chapters, Bhagavad Gita verses, Gita quotes, spiritual guidance, karma yoga, jnana yoga, bhakti yoga'
+    const description = "Read the complete Bhagavad Gita online in Sanskrit with English translation and meaning. Explore the timeless wisdom of Lord Krishna's teachings on life, duty, devotion, and spirituality.";
+    const keywords = 'Bhagavad Gita, Bhagvad Gita, Srimad Bhagavad Gita, Bhagavad Gita in English, Bhagavad Gita Sanskrit, Gita with meaning, Krishna teachings, Hindu scripture, Gita online, Gita slokas, Bhagavad Gita chapters, Bhagavad Gita verses, Gita quotes, spiritual guidance, karma yoga, jnana yoga, bhakti yoga';
     this._canonicalService.updateMetaTags({
       metaTitle: 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning',
       description: description,
       keywords: keywords
-    })
+    });
+    this._canonicalService.setStructuredData({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': 'https://bhagvad-gita.vercel.app/home',
+      'url': 'https://bhagvad-gita.vercel.app/home',
+      'name': 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning',
+      'description': description,
+      'inLanguage': 'en',
+      'isPartOf': {
+        '@type': 'WebSite',
+        'url': 'https://bhagvad-gita.vercel.app'
+      },
+      'about': {
+        '@type': 'Book',
+        'name': 'Bhagavad Gita',
+        'url': 'https://bhagvad-gita.vercel.app'
+      }
+    });
   }
 
   redirectToChapter(): void {
