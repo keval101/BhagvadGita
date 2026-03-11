@@ -2,6 +2,21 @@
     &__content {
         @apply flex;
     }
+
+    &__heading {
+        font-size: 28px;
+        line-height: 38px;
+
+        @screen md-max {
+            font-size: 22px;
+            line-height: 30px;
+        }
+
+        @screen sm-max {
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
     
     &__text {
         width: 65%;

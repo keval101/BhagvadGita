@@ -1,21 +1,23 @@
 <section class="section__container section content-container">
-    <h1 class="text-6xl primary-text-color mb-8 font-semibold md-max:mt-7">Chapters</h1>
-    <div class="chapters__summary mb-8">
+    <h1 class="text-4xl primary-text-color mb-4 font-semibold md-max:mt-7">
+        Bhagavad Gita – All 18 Chapters
+    </h1>
+    <p class="chapters__summary mb-8">
         In the Bhagavad Gita, there are a total of 18 chapters, out of which <span class="primary-text-color">1st to 6th</span> is talk about how one should do his duties and is called
         <span class="primary-text-color">Karma Yoga</span>.
         <br>
         The second set of 6 chapters from chapter <span class="primary-text-color">7th to 12th</span> is called as <span class="primary-text-color">Bhakti Yoga</span>.
         <br>
-        The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jaana Yoga</span>.
-    </div>
+        The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jnana Yoga</span>.
+    </p>
     <div class="chapters__container grid justify-center" *ngIf="isResponse">
-        <div class="chapters__card p-4 rounded-lg flex justify-center flex-col cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
-            <h3 class="font-normal text-2xl">{{chapter.name_translated}}</h3>
+        <article class="chapters__card p-4 rounded-lg flex justify-center flex-col cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
+            <h2 class="font-normal text-2xl">{{chapter.name_translated}}</h2>
             <div class="flex">
                 <span class="chapters__text text-gray-500 mr-2">Chapter {{chapter.id}},</span>
-                <span class="chapters__verses text-gray-500">Verses {{chapter.verses_count}}</span>
+                <span class="chapters__verses text-gray-500">{{chapter.verses_count}} Verses</span>
             </div>
-        </div>
+        </article>
     </div>
 </section>
 

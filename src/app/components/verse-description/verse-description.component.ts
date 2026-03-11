@@ -6,6 +6,13 @@ import { Subject } from 'rxjs';
 import { CanonicalService } from 'src/app/services/canonical.service';
 import { DataService } from 'src/app/services/data.service';
 
+const BASE_URL = 'https://bhagvad-gita.vercel.app';
+const VERSES_PER_CHAPTER: { [key: number]: number } = {
+  1: 47, 2: 72, 3: 43, 4: 42, 5: 29, 6: 47, 7: 30,
+  8: 28, 9: 34, 10: 42, 11: 55, 12: 20, 13: 35, 14: 27,
+  15: 20, 16: 24, 17: 28, 18: 78
+};
+
 @Component({
   selector: 'app-verse-description',
   templateUrl: './verse-description.component.html',
@@ -72,6 +79,16 @@ export class VerseDescriptionComponent implements OnInit {
 
         this._metaTitle.setTitle(title)
         this._canonicalService.createCanonicalLink();
+
+        const totalVerses = VERSES_PER_CHAPTER[res.chapter_number] || 0;
+        const prevUrl = res.verse_number > 1
+          ? `${BASE_URL}/chapter/${res.chapter_number}/verse/${res.verse_number - 1}`
+          : undefined;
+        const nextUrl = res.verse_number < totalVerses
+          ? `${BASE_URL}/chapter/${res.chapter_number}/verse/${res.verse_number + 1}`
+          : undefined;
+        this._canonicalService.setPaginationLinks(prevUrl, nextUrl);
+
         this._canonicalService.setStructuredData([
           {
             '@context': 'https://schema.org',

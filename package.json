@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "dev:ssr": "ng run BhagvadGita:serve-ssr",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider ng serve",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider ng build --prod",
+    "watch": "NODE_OPTIONS=--openssl-legacy-provider ng build --watch --configuration development",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider ng test",
+    "dev:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:serve-ssr",
     "serve:ssr": "node dist/BhagvadGita/server/main.js",
-    "build:ssr": "ng build && ng run BhagvadGita:server",
-    "prerender": "ng run BhagvadGita:prerender"
+    "build:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng build && ng run BhagvadGita:server",
+    "prerender": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:prerender"
   },
   "private": true,
   "dependencies": {

@@ -12,7 +12,17 @@
             height: auto;
             animation: faded 0.4s ease-in;
         }
-        
+
+        &-english-title {
+            font-size: 22px;
+            line-height: 30px;
+
+            @screen sm-max {
+                font-size: 18px;
+                line-height: 26px;
+            }
+        }
+
         &-title {
             font-size: 32px;
             line-height: 30px;
@@ -59,6 +69,18 @@
 
         .footer-text {
             letter-spacing: 1px;
+        }
+    }
+
+    &__section-heading {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        width: 100%;
+        text-align: center;
+
+        @screen sm-max {
+            font-size: 16px;
         }
     }
 
@@ -170,7 +192,7 @@
 }
 
 .mobile-button {
-    @apply flex hidden  absolute justify-between mt-2;
+    @apply flex hidden absolute justify-between mt-2;
     width: 95vw;
     top: 50%;
 

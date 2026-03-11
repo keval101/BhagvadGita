@@ -1,7 +1,12 @@
-<footer class="footer-section flex justify-center items-center">
-    <p>@ 2022 All rights reserved. </p>
-    <!-- Place this tag where you want the button to render. -->
-    <!-- <div>
-        <a class="github-button" href="https://github.com/keval101/BhagvadGita" data-color-scheme="no-preference: light_high_contrast; light: light_high_contrast; dark: light;" data-icon="octicon-star" data-show-count="true" aria-label="Star keval101/BhagvadGita on GitHub">Star</a>
-    </div> -->
+<footer class="footer-section">
+    <div class="footer__content content-container">
+        <nav class="footer__nav" aria-label="Footer navigation">
+            <a [routerLink]="['/home']" class="footer__link">Home</a>
+            <a [routerLink]="['/chapters']" class="footer__link">All 18 Chapters</a>
+        </nav>
+        <p class="footer__copy">
+            &copy; {{currentYear}} Bhagavad Gita Online &mdash; Built by
+            <a href="https://github.com/keval101" rel="author noopener" target="_blank" class="footer__link">Keval Vadhiya</a>
+        </p>
+    </div>
 </footer>

@@ -1,5 +1,44 @@
 .footer-section {
-    height: 60px;
     background-color: var(--primary--color);
     color: #fff;
+    padding: 14px 0;
+}
+
+.footer {
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        @screen sm-max {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__link {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    &__copy {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+    }
 }

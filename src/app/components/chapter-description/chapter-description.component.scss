@@ -12,6 +12,7 @@
 
             @screen 2xl-max {
                 font-size: 45px;
+                line-height: normal;
             }
 
             @screen sm-max {
@@ -23,6 +24,7 @@
             font-size: 14px;
             line-height: 24px;
             color: var(--primary-light-color);
+            white-space: nowrap;
         }
     }
 
@@ -114,6 +116,7 @@
 
 .krishna-image {
     width: 350px;
+    height: fit-content
 }
 
 //custom-style for pagination-controll

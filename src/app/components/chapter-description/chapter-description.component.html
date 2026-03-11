@@ -1,32 +1,33 @@
 <section class="section chapter content-container">
     <div *ngIf="isChapterResponse">
-        <!-- <div class="chapter__title">{{chapter.name}}</div> -->
         <div class="md:flex">
             <div class="flex flex-col justify-center sm-max:mr-0 sm:mr-14">
                 <div class="chapter__title">
                     <h1 class="font-semibold primary-text-color">{{chapter.name_translated}}
                     <span class="text-xs" style="color: var(--primary-light-color);" *ngIf="isMobileScreen">(Chapter-{{chapter.chapter_number}})</span></h1>
-                    <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">(Chapter-{{chapter.chapter_number}})</p>   
+                    <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">(Chapter-{{chapter.chapter_number}})</p>
                 </div>
                 <div class="chapter__summary">{{chapter.chapter_summary}}</div>
                 <div class="chapter__goverse flex mt-4">
                     <p-inputNumber
-                    [(ngModel)]="selectedVerse" mode="decimal" 
+                    [(ngModel)]="selectedVerse" mode="decimal"
                     inputId="withoutgrouping" [useGrouping]="false"
                     [min]="1" (onInput)="isLargerNumber = false"
                     placeholder="Go to any Verse" (keydown)="keydownOnVerse(selectedVerse, $event)">
                     </p-inputNumber>
-                    <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)">
+                    <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)" aria-label="Go to verse">
                         <i class="pi pi-angle-right"></i>
                     </button>
                 </div>
                 <p class="p-error block mt-4" *ngIf="isLargerNumber">
-                    Bhagavad Gita Chapter {{chapter.chapter_number}} has only {{verses.length}}
+                    Bhagavad Gita Chapter {{chapter.chapter_number}} has only {{verses.length}} verses
                 </p>
             </div>
-            <img src="../../../assets/krishna.jpg" alt="krishna-arjuna" class="krishna-image md:block md-max:hidden">
+            <img src="../../../assets/krishna.jpg"
+                 [alt]="'Bhagavad Gita Chapter ' + chapter.chapter_number + ': ' + chapter.name_translated"
+                 class="krishna-image md:block md-max:hidden"
+                 width="350" height="350">
         </div>
-        <!-- <div class="chapter__summary">{{chapter.chapter_summary_hindi}}</div> -->
     </div>
 
     <!-- Loading Spinner -->
@@ -34,11 +35,18 @@
         <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
     </div>
 
-    <div class="verses grid justify-center mt-10" >
-        <div *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }" style="white-space: pre-line;" class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer" (click)="redirectToVerse(verse.verse_number)">
-            <div class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</div>
+    <h2 class="text-2xl font-semibold primary-text-color mt-10 mb-2" *ngIf="isChapterResponse">
+        Verses in Chapter {{chapter.chapter_number}} – {{chapter.name_translated}}
+    </h2>
+
+    <div class="verses grid justify-center mt-4">
+        <article *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }"
+                 style="white-space: pre-line;"
+                 class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer"
+                 (click)="redirectToVerse(verse.verse_number)">
+            <h3 class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</h3>
             <div class="verses__box-text py-5 flex-grow common-flex-center">{{verse.text}}</div>
-        </div>
+        </article>
     </div>
 
     <div class="pagination w-full mt-12" *ngIf="isResponse">

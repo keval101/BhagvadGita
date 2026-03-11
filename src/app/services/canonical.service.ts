@@ -86,4 +86,28 @@ export class CanonicalService {
       }
     }
   }
+
+  setPaginationLinks(prevUrl?: string, nextUrl?: string): void {
+    if (!this.isBrowser) { return; }
+
+    const prevEl: HTMLLinkElement | null = this.dom.querySelector('link[rel="prev"]');
+    const nextEl: HTMLLinkElement | null = this.dom.querySelector('link[rel="next"]');
+
+    if (prevEl) { prevEl.parentNode.removeChild(prevEl); }
+    if (nextEl) { nextEl.parentNode.removeChild(nextEl); }
+
+    if (prevUrl) {
+      const link: HTMLLinkElement = this.dom.createElement('link');
+      link.setAttribute('rel', 'prev');
+      link.setAttribute('href', prevUrl);
+      this.dom.head.appendChild(link);
+    }
+
+    if (nextUrl) {
+      const link: HTMLLinkElement = this.dom.createElement('link');
+      link.setAttribute('rel', 'next');
+      link.setAttribute('href', nextUrl);
+      this.dom.head.appendChild(link);
+    }
+  }
 }
