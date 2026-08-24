@@ -10,7 +10,8 @@
     "dev:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:serve-ssr",
     "serve:ssr": "node dist/BhagvadGita/server/main.js",
     "build:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng build && ng run BhagvadGita:server",
-    "prerender": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:prerender"
+    "prerender": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:prerender",
+    "seo:audit": "node scripts/seo-audit.js"
   },
   "private": true,
   "dependencies": {

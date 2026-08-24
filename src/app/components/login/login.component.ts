@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +23,16 @@ export class LoginComponent implements OnInit {
   })
   isBackClick = false;
   isLogin = false;
-  constructor(private _location: Location, private _router: Router) { }
+  constructor(private _location: Location, private _router: Router, private seo: SeoService) { }
 
   ngOnInit(): void {
-    this._router.url === '/login' ? this.isLogin = true : this.isLogin = false;
+    this.isLogin = this._router.url === '/login';
+    this.seo.update({
+      title: 'Login | Bhagavad Gita',
+      description: 'Account page for Bhagavad Gita online.',
+      path: '/login',
+      robots: 'noindex, follow'
+    });
   }
 
   signup(): void {

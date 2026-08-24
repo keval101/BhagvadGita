@@ -13,16 +13,16 @@ import { ChapterDescriptionComponent } from './components/chapter-description/ch
 import { FooterComponent } from './components/footer/footer.component';
 import { VerseDescriptionComponent } from './components/verse-description/verse-description.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
-//pagination-library
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
 
-//primeng
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
-import {InputTextModule} from 'primeng/inputtext';
-import {InputNumberModule} from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +33,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
     VerseDescriptionComponent,
     FooterComponent,
     LoginComponent,
+    NotFoundComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

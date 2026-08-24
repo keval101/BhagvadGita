@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { CanonicalService } from 'src/app/services/canonical.service';
+import { ALL_CHAPTERS, VERSES_PER_CHAPTER } from 'src/app/seo/gita.data';
 import { DataService } from '../../services/data.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-chapters',
@@ -11,51 +10,47 @@ import { DataService } from '../../services/data.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ChaptersComponent implements OnInit {
-
   totalChapters = [];
-  isResponse: boolean;
-  constructor(private _dataService: DataService, private _canonicalService: CanonicalService,
-              private _router: Router, private _metaTitle: Title) { 
-    this.isResponse = false;
-  }
+  fallbackChapters = ALL_CHAPTERS;
+  isResponse = false;
+
+  constructor(
+    private dataService: DataService,
+    private seo: SeoService
+  ) {}
 
   ngOnInit(): void {
-    this._metaTitle.setTitle('Bhagavad Gita Chapters – Summary of All 18 Chapters');
-    const keywords = `Bhagavad Gita, Gita, Srimad Bhagavad Gita, Bhagavad Gita teachings, Krishna and Arjuna, Indian philosophy, Hinduism, Dharma, Karma, Yoga, Bhakti yoga, Meditation, Vedanta, Upanishads, Gita quotes, Bhagavad Gita in English, Bhagavad Gita translations, Bhagavad Gita audio, Bhagavad Gita study guide, Gita for beginners, Gita online, Bhagavad Gita chapters, Bhagavad Gita verse meanings, Chapter summaries, Gita slokas, Gita in Sanskrit, Arjuna Visada Yoga, Sankhya Yoga, Karma Yoga, Jnana Karma Sanyasa Yoga, Karma Sanyasa Yoga, Dhyana Yoga, Gyaan Vigyana Yoga, Akshara Brahma Yoga, Raja Vidya Yoga, Vibhooti Yoga, Vishwaroopa Darshana Yoga, Bhakti Yoga, Ksetra Ksetrajna Vibhaaga Yoga, Gunatraya Vibhaga Yoga, Purushottama Yoga, Daivasura Sampad Vibhaga Yoga, Sraddhatraya Vibhaga Yoga, Moksha Sanyaas Yoga`;
-
-    this._canonicalService.createCanonicalLink();
-    this._canonicalService.updateMetaTags({
-      metaTitle: 'Bhagavad Gita Chapters – Summary of All 18 Chapters',
-      description: 'Explore all 18 chapters of the Bhagavad Gita. Understand the essence of each chapter with Sanskrit names, titles, and summaries.',
-      keywords: keywords
-    });
-    this._canonicalService.setStructuredData({
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
-        {
-          '@type': 'ListItem',
-          'position': 1,
-          'name': 'Home',
-          'item': 'https://bhagvad-gita.vercel.app/home'
-        },
-        {
-          '@type': 'ListItem',
-          'position': 2,
-          'name': 'All 18 Chapters',
-          'item': 'https://bhagvad-gita.vercel.app/chapters'
-        }
+    const title = 'Bhagavad Gita Chapters – Summary of All 18 Chapters';
+    const description = 'Explore all 18 chapters of the Bhagavad Gita. Read each chapter’s Sanskrit name, English title, summary, and links to every verse.';
+    this.seo.update({
+      title,
+      description,
+      path: '/chapters',
+      robots: 'index, follow',
+      keywords: 'Bhagavad Gita chapters, Karma Yoga, Bhakti Yoga, Jnana Yoga, Gita summaries',
+      jsonLd: [
+        this.seo.webPage({ name: title, description, path: '/chapters' }),
+        this.seo.breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Chapters', path: '/chapters' }
+        ])
       ]
-    });    
+    });
 
-    this._dataService.getAllChapters().subscribe(
+    this.dataService.getAllChapters().subscribe(
       response => {
         this.totalChapters = response;
         this.isResponse = true;
-      })
-  }
-
-  gotoChapter(id: number): void {
-    this._router.navigate(['chapter', id])
+      },
+      () => {
+        this.totalChapters = this.fallbackChapters.map(chapter => ({
+          id: chapter.number,
+          name_translated: chapter.nameTranslated,
+          verses_count: VERSES_PER_CHAPTER[chapter.number],
+          name_meaning: chapter.nameMeaning
+        }));
+        this.isResponse = true;
+      }
+    );
   }
 }

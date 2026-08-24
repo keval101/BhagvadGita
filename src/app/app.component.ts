@@ -1,5 +1,5 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterContentChecked, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,26 +12,23 @@ export class AppComponent implements OnInit, AfterContentChecked {
   isMobileScreen = false;
   isLogin = false;
   isBackClick = false;
-  constructor(private _router: Router, private _meta: Meta) {}
-  ngOnInit(): void {
-    this._meta.addTags([
-      { name: "description", content:"" },
-      { name: 'keywords', content: '' },
-      { name: 'author', content: 'Keval Vadhiya' },
-    ])
 
-    if( /Android|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId) && /Android|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.isMobileScreen = true;
-    } else {
-      this.isMobileScreen = false;
     }
   }
 
   ngAfterContentChecked(): void {
-    this._router.url === '/login' ? this.isLogin = true : this.isLogin = false;
+    this.isLogin = this.router.url === '/login';
   }
-  
+
   openMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

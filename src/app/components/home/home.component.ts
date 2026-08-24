@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
-import { CanonicalService } from 'src/app/services/canonical.service';
+import { ALL_CHAPTERS } from 'src/app/seo/gita.data';
+import { SeoService } from 'src/app/services/seo.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,42 +9,33 @@ import { CanonicalService } from 'src/app/services/canonical.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+  chapters = ALL_CHAPTERS;
+  karmaChapters = ALL_CHAPTERS.filter(chapter => chapter.yogaPath === 'Karma Yoga');
+  bhaktiChapters = ALL_CHAPTERS.filter(chapter => chapter.yogaPath === 'Bhakti Yoga');
+  jnanaChapters = ALL_CHAPTERS.filter(chapter => chapter.yogaPath === 'Jnana Yoga');
 
-  constructor(private _router: Router, private _meta:Meta,
-              private _metaTitle: Title, private _canonicalService: CanonicalService) { }
+  constructor(private seo: SeoService) {}
 
   ngOnInit(): void {
-    this._metaTitle.setTitle('Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning');
-    this._canonicalService.createCanonicalLink();
-    const description = "Read the complete Bhagavad Gita online in Sanskrit with English translation and meaning. Explore the timeless wisdom of Lord Krishna's teachings on life, duty, devotion, and spirituality.";
-    const keywords = 'Bhagavad Gita, Bhagvad Gita, Srimad Bhagavad Gita, Bhagavad Gita in English, Bhagavad Gita Sanskrit, Gita with meaning, Krishna teachings, Hindu scripture, Gita online, Gita slokas, Bhagavad Gita chapters, Bhagavad Gita verses, Gita quotes, spiritual guidance, karma yoga, jnana yoga, bhakti yoga';
-    this._canonicalService.updateMetaTags({
-      metaTitle: 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning',
-      description: description,
-      keywords: keywords
-    });
-    this._canonicalService.setStructuredData({
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      '@id': 'https://bhagvad-gita.vercel.app/home',
-      'url': 'https://bhagvad-gita.vercel.app/home',
-      'name': 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning',
-      'description': description,
-      'inLanguage': 'en',
-      'isPartOf': {
-        '@type': 'WebSite',
-        'url': 'https://bhagvad-gita.vercel.app'
-      },
-      'about': {
-        '@type': 'Book',
-        'name': 'Bhagavad Gita',
-        'url': 'https://bhagvad-gita.vercel.app'
-      }
+    const title = 'Bhagavad Gita – Complete Sanskrit Text with English Translation & Meaning';
+    const description = 'Read the complete Bhagavad Gita online: all 18 chapters and 700 verses in Sanskrit, with English translation, Hindi meaning, commentary, and spiritual teachings.';
+    this.seo.update({
+      title,
+      description,
+      path: '/',
+      robots: 'index, follow',
+      keywords: 'Bhagavad Gita, Sanskrit verses, English translation, Hindi meaning, Krishna, Arjuna, karma yoga, bhakti yoga, jnana yoga',
+      jsonLd: [
+        this.seo.webPage({ name: title, description, path: '/' }),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Bhagavad Gita',
+          url: 'https://bhagvad-gita.vercel.app',
+          description,
+          inLanguage: 'en'
+        }
+      ]
     });
   }
-
-  redirectToChapter(): void {
-    this._router.navigate(['chapters']);
-  }
-
 }

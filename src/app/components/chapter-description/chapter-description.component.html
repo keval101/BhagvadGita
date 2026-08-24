@@ -1,55 +1,115 @@
-<section class="section chapter content-container">
-    <div *ngIf="isChapterResponse">
+<main class="section chapter content-container">
+    <app-breadcrumbs *ngIf="isChapterResponse" [items]="breadcrumbs"></app-breadcrumbs>
+
+    <article *ngIf="isChapterResponse">
         <div class="md:flex">
             <div class="flex flex-col justify-center sm-max:mr-0 sm:mr-14">
-                <div class="chapter__title">
-                    <h1 class="font-semibold primary-text-color">{{chapter.name_translated}}
-                    <span class="text-xs" style="color: var(--primary-light-color);" *ngIf="isMobileScreen">(Chapter-{{chapter.chapter_number}})</span></h1>
-                    <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">(Chapter-{{chapter.chapter_number}})</p>
-                </div>
-                <div class="chapter__summary">{{chapter.chapter_summary}}</div>
-                <div class="chapter__goverse flex mt-4">
+                <header class="chapter__title">
+                    <h1 class="font-semibold primary-text-color">
+                        Bhagavad Gita Chapter {{ chapter.chapter_number }}: {{ chapter.name_translated }}
+                    </h1>
+                    <p class="ml-2 font-semibold" *ngIf="!isMobileScreen">({{ chapterMeta?.nameMeaning }})</p>
+                </header>
+                <p class="chapter__kicker" *ngIf="isMobileScreen">{{ chapterMeta?.nameMeaning }}</p>
+                <p class="chapter__path">
+                    {{ chapter.verses_count }} verses · {{ chapterMeta?.yogaPath }}
+                </p>
+                <div class="chapter__summary">{{ chapter.chapter_summary }}</div>
+                <p class="chapter__summary-hindi" *ngIf="chapter.chapter_summary_hindi">{{ chapter.chapter_summary_hindi }}</p>
+
+                <form class="chapter__goverse flex mt-4" (submit)="$event.preventDefault(); redirectToVerse(selectedVerse)">
                     <p-inputNumber
-                    [(ngModel)]="selectedVerse" mode="decimal"
-                    inputId="withoutgrouping" [useGrouping]="false"
-                    [min]="1" (onInput)="isLargerNumber = false"
-                    placeholder="Go to any Verse" (keydown)="keydownOnVerse(selectedVerse, $event)">
+                        [(ngModel)]="selectedVerse" mode="decimal"
+                        inputId="withoutgrouping" [useGrouping]="false"
+                        name="selectedVerse"
+                        [min]="1" (onInput)="isLargerNumber = false"
+                        placeholder="Go to any Verse" (keydown)="keydownOnVerse(selectedVerse, $event)">
                     </p-inputNumber>
-                    <button class="chapter__goverse-button common-flex-center" (click)="redirectToVerse(selectedVerse)" aria-label="Go to verse">
+                    <a class="chapter__goverse-button common-flex-center"
+                       *ngIf="selectedVerse && selectedVerse <= verses.length"
+                       [routerLink]="verseHref(selectedVerse)"
+                       aria-label="Go to verse">
+                        <i class="pi pi-angle-right"></i>
+                    </a>
+                    <button type="button" class="chapter__goverse-button common-flex-center" *ngIf="!selectedVerse || selectedVerse > verses.length"
+                            (click)="redirectToVerse(selectedVerse)" aria-label="Go to verse">
                         <i class="pi pi-angle-right"></i>
                     </button>
-                </div>
+                </form>
                 <p class="p-error block mt-4" *ngIf="isLargerNumber">
-                    Bhagavad Gita Chapter {{chapter.chapter_number}} has only {{verses.length}} verses
+                    Bhagavad Gita Chapter {{ chapter.chapter_number }} has only {{ verses.length }} verses
                 </p>
             </div>
-            <img src="../../../assets/krishna.jpg"
+            <img src="assets/krishna.jpg"
                  [alt]="'Bhagavad Gita Chapter ' + chapter.chapter_number + ': ' + chapter.name_translated"
                  class="krishna-image md:block md-max:hidden"
                  width="350" height="350">
         </div>
-    </div>
 
-    <!-- Loading Spinner -->
-    <div class="loading-spinner" *ngIf="!isResponse">
+        <section class="chapter__panel" *ngIf="chapterMeta">
+            <h2>Themes in this chapter</h2>
+            <ul>
+                <li *ngFor="let theme of chapterMeta.themes">{{ theme }}</li>
+            </ul>
+        </section>
+
+        <section class="chapter__panel" *ngIf="chapterMeta">
+            <h2>Important teachings</h2>
+            <ul>
+                <li *ngFor="let teaching of chapterMeta.teachings">{{ teaching }}</li>
+            </ul>
+        </section>
+    </article>
+
+    <div class="loading-spinner" *ngIf="!isResponse && !isNotFound">
         <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
     </div>
 
-    <h2 class="text-2xl font-semibold primary-text-color mt-10 mb-2" *ngIf="isChapterResponse">
-        Verses in Chapter {{chapter.chapter_number}} – {{chapter.name_translated}}
-    </h2>
+    <section *ngIf="isChapterResponse">
+        <h2 class="text-2xl font-semibold primary-text-color mt-10 mb-2">
+            All verses in Chapter {{ chapter.chapter_number }}
+        </h2>
+        <nav class="chapter__verse-index" aria-label="All verses in this chapter">
+            <a *ngFor="let verse of verses" class="chapter__verse-link" [routerLink]="verseHref(verse.verse_number)">
+                {{ verse.verse_number }}
+            </a>
+        </nav>
+    </section>
 
-    <div class="verses grid justify-center mt-4">
+    <div class="verses grid justify-center mt-4" *ngIf="isResponse && verses.length">
         <article *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }"
-                 style="white-space: pre-line;"
-                 class="verses__box flex flex-col shadow-md text-center rounded-md cursor-pointer"
-                 (click)="redirectToVerse(verse.verse_number)">
-            <h3 class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">Verse {{verse.verse_number}}</h3>
-            <div class="verses__box-text py-5 flex-grow common-flex-center">{{verse.text}}</div>
+                 class="verses__box flex flex-col shadow-md text-center rounded-md">
+            <a [routerLink]="verseHref(verse.verse_number)" class="verses__box-link">
+                <h3 class="verses__box-title w-full py-3 text-white font-semibold border-gray-200 common-flex-center">
+                    Verse {{ verse.verse_number }}
+                </h3>
+                <p class="verses__box-text py-5 flex-grow common-flex-center">{{ verse.text }}</p>
+            </a>
         </article>
     </div>
 
-    <div class="pagination w-full mt-12" *ngIf="isResponse">
+    <div class="pagination w-full mt-12" *ngIf="isResponse && verses.length">
         <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
     </div>
-</section>
+
+    <section class="chapter__panel" *ngIf="isChapterResponse && faqs.length">
+        <h2>Chapter questions</h2>
+        <article *ngFor="let faq of faqs" class="chapter__faq">
+            <h3>{{ faq.question }}</h3>
+            <p>{{ faq.answer }}</p>
+        </article>
+    </section>
+
+    <nav class="chapter__related" *ngIf="relatedChapters.length" aria-label="Related chapters">
+        <h2>Related chapters</h2>
+        <a *ngFor="let related of relatedChapters" [routerLink]="['/chapter', related.number]">
+            Chapter {{ related.number }}: {{ related.nameTranslated }}
+        </a>
+    </nav>
+
+    <article class="chapter__missing" *ngIf="isNotFound">
+        <h1>Chapter not found</h1>
+        <p>The Bhagavad Gita has 18 chapters. This URL does not match a valid chapter.</p>
+        <a class="button" routerLink="/chapters">View all chapters</a>
+    </article>
+</main>

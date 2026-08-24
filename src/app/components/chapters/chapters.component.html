@@ -1,27 +1,34 @@
-<section class="section__container section content-container">
+<main class="section__container section content-container">
     <h1 class="text-4xl primary-text-color mb-4 font-semibold md-max:mt-7">
         Bhagavad Gita – All 18 Chapters
     </h1>
     <p class="chapters__summary mb-8">
-        In the Bhagavad Gita, there are a total of 18 chapters, out of which <span class="primary-text-color">1st to 6th</span> is talk about how one should do his duties and is called
-        <span class="primary-text-color">Karma Yoga</span>.
-        <br>
-        The second set of 6 chapters from chapter <span class="primary-text-color">7th to 12th</span> is called as <span class="primary-text-color">Bhakti Yoga</span>.
-        <br>
-        The third set of 6 chapters from chapter <span class="primary-text-color">13th to 18th</span> is called as <span class="primary-text-color">Jnana Yoga</span>.
+        The Bhagavad Gita is arranged in three groups of six chapters.
+        Chapters <span class="primary-text-color">1 to 6</span> emphasize
+        <a routerLink="/" fragment="karma-yoga" class="primary-text-color">Karma Yoga</a>,
+        the discipline of action.
+        Chapters <span class="primary-text-color">7 to 12</span> emphasize
+        <a routerLink="/" fragment="bhakti-yoga" class="primary-text-color">Bhakti Yoga</a>,
+        the path of devotion.
+        Chapters <span class="primary-text-color">13 to 18</span> emphasize
+        <a routerLink="/" fragment="jnana-yoga" class="primary-text-color">Jnana Yoga</a>,
+        the path of knowledge.
+        Open any chapter to read its summary and every verse.
     </p>
-    <div class="chapters__container grid justify-center" *ngIf="isResponse">
-        <article class="chapters__card p-4 rounded-lg flex justify-center flex-col cursor-pointer" *ngFor="let chapter of totalChapters" (click)="gotoChapter(chapter.id)">
-            <h2 class="font-normal text-2xl">{{chapter.name_translated}}</h2>
-            <div class="flex">
-                <span class="chapters__text text-gray-500 mr-2">Chapter {{chapter.id}},</span>
-                <span class="chapters__verses text-gray-500">{{chapter.verses_count}} Verses</span>
-            </div>
-        </article>
-    </div>
-</section>
 
-<!-- Loading Spinner -->
+    <nav class="chapters__container grid justify-center" *ngIf="isResponse" aria-label="All chapters">
+        <article class="chapters__card p-4 rounded-lg flex justify-center flex-col" *ngFor="let chapter of totalChapters">
+            <a class="chapters__card-link" [routerLink]="['/chapter', chapter.id || chapter.number]">
+                <h2 class="font-normal text-2xl">{{ chapter.name_translated }}</h2>
+                <div class="flex">
+                    <span class="chapters__text text-gray-500 mr-2">Chapter {{ chapter.id || chapter.number }},</span>
+                    <span class="chapters__verses text-gray-500" *ngIf="chapter.verses_count">{{ chapter.verses_count }} Verses</span>
+                </div>
+            </a>
+        </article>
+    </nav>
+</main>
+
 <div class="loading-spinner" *ngIf="!isResponse">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
 </div>

@@ -7,16 +7,15 @@
         }
 
         h1 {
-            font-size: 54px;
-            line-height: 32px;
+            font-size: 42px;
+            line-height: 1.2;
 
             @screen 2xl-max {
-                font-size: 45px;
-                line-height: normal;
+                font-size: 36px;
             }
 
             @screen sm-max {
-                font-size: 30px;
+                font-size: 26px;
             }
         }
 
@@ -102,7 +101,7 @@
         }
     
         &-text {
-            line-height: 16px;
+            line-height: 32px;
         }
     
         &:hover {
@@ -117,6 +116,120 @@
 .krishna-image {
     width: 350px;
     height: fit-content
+}
+
+.chapter {
+    &__kicker {
+        color: var(--primary-light-color);
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+    }
+
+    &__path {
+        font-size: 14px;
+        color: #6b6b6b;
+        margin-bottom: 1rem;
+    }
+
+    &__summary-hindi {
+        margin-top: 1rem;
+        line-height: 1.8;
+        font-size: 16px;
+    }
+
+    &__panel {
+        max-width: 850px;
+        margin-top: 2rem;
+
+        h2 {
+            color: var(--primary--color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+    }
+
+    &__verse-index {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 1rem 0 1.5rem;
+    }
+
+    &__verse-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        height: 36px;
+        padding: 0 8px;
+        border-radius: 4px;
+        background: #fff;
+        color: var(--primary--color);
+        text-decoration: none;
+        border: 1px solid #f0d4a8;
+        font-size: 14px;
+
+        &:hover {
+            background: var(--primary--color);
+            color: #fff;
+        }
+    }
+
+    &__faq {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+    }
+
+    &__related {
+        margin-top: 2.5rem;
+
+        h2 {
+            color: var(--primary--color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        a {
+            display: block;
+            color: var(--primary--color);
+            margin-bottom: 0.4rem;
+        }
+    }
+
+    &__missing {
+        text-align: center;
+        padding: 4rem 1rem;
+
+        h1 {
+            color: var(--primary--color);
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.verses__box-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
 }
 
 //custom-style for pagination-controll

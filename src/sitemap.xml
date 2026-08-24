@@ -6,11 +6,6 @@
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>https://bhagvad-gita.vercel.app/home</loc>
-        <lastmod>2023-02-19T07:57:32+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
         <loc>https://bhagvad-gita.vercel.app/chapters</loc>
         <lastmod>2023-02-19T07:57:32+00:00</lastmod>
         <priority>0.80</priority>

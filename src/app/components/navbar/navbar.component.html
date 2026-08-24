@@ -1,14 +1,15 @@
 <header>
-    <nav class="navbar content-container">
-        <div class="navbar__logo" [routerLink]="['home']" routerLinkActive="active">
-            <img src="assets/logo2.png" alt="logo">
-        </div>
+    <nav class="navbar content-container" aria-label="Primary">
+        <a class="navbar__logo" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <img src="assets/logo2.png" alt="Bhagavad Gita" width="50" height="50">
+        </a>
         <ul class="navbar__nav">
-            <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link" [routerLink]="['home']" routerLinkActive="active">Home</a></li>
-            <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link" [routerLink]="['chapters']" routerLinkActive="active">Chapters</a></li>
-            <!-- <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link" [routerLink]="" >Favourites</a></li>
-            <li class="navbar__nav-item" (click)="closeMenu()"><a class="navbar__nav-item-link"
-            [routerLink]="['login']" routerLinkActive="active">Login</a></li> -->
+            <li class="navbar__nav-item" (click)="closeMenu()">
+                <a class="navbar__nav-item-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            </li>
+            <li class="navbar__nav-item" (click)="closeMenu()">
+                <a class="navbar__nav-item-link" routerLink="/chapters" routerLinkActive="active">Chapters</a>
+            </li>
         </ul>
     </nav>
 </header>

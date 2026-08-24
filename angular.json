@@ -159,7 +159,7 @@
             "routes": [
               "/"
             ],
-            "routesFile": "/src/dynamicRoutes.txt"
+            "routesFile": "src/dynamicRoutes.txt"
           },
           "configurations": {
             "production": {

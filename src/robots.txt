@@ -1,4 +1,7 @@
 User-agent: *
-Disallow:
 Allow: /
+Allow: /chapter/
+Disallow: /login
+Disallow: /404
+
 Sitemap: https://bhagvad-gita.vercel.app/sitemap.xml

@@ -41,6 +41,57 @@
     animation: ping 2s ease infinite;
 }
 
+.home {
+    &__subheading {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin: 3rem 0 0.75rem;
+    }
+
+    &__lead {
+        max-width: 720px;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+
+    &__group {
+        margin-bottom: 1.75rem;
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #4f4141;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 0.45rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary--color);
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        span {
+            color: #6b6b6b;
+            font-size: 14px;
+        }
+    }
+}
+
 @keyframes ping {
     0% {
         transform: translateX(0);

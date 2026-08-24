@@ -4,16 +4,16 @@ import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { existsSync } from 'fs';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { AppServerModule } from './src/main.server';
+import { SSR_RESPONSE } from './src/app/seo/ssr-tokens';
 
-// The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/BhagvadGita/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const resolvedDist = resolve(distFolder);
 
-  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/main/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule
   }));
@@ -21,16 +21,39 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
-  }));
+  server.use((req, res, next) => {
+    if (req.path.length > 1 && req.path.endsWith('/')) {
+      const query = req.url.slice(req.path.length);
+      return res.redirect(301, req.path.slice(0, -1) + query);
+    }
+    next();
+  });
 
-  // All regular routes use the Universal engine
+  server.get('/home', (req, res) => {
+    res.redirect(301, '/');
+  });
+
+  server.get('*.*', (req, res) => {
+    const requested = resolve(distFolder, decodeURIComponent(req.path).replace(/^\/+/, ''));
+    if (!requested.startsWith(resolvedDist + '/') && requested !== resolvedDist) {
+      return res.status(400).type('text/plain').send('Bad request');
+    }
+    if (existsSync(requested)) {
+      return res.sendFile(requested, { maxAge: '1y' });
+    }
+    return res.status(404).type('text/plain').send('Not found');
+  });
+
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
+    res.render(indexHtml, {
+      req,
+      res,
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: SSR_RESPONSE, useValue: res }
+      ]
+    });
   });
 
   return server;
@@ -38,17 +61,12 @@ export function app(): express.Express {
 
 function run(): void {
   const port = process.env['PORT'] || 4000;
-
-  // Start up the Node server
   const server = app();
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
 
-// Webpack will replace 'require' with '__webpack_require__'
-// '__non_webpack_require__' is a proxy to Node 'require'
-// The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
 const moduleFilename = mainModule && mainModule.filename || '';

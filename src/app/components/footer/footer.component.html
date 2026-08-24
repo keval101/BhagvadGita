@@ -1,8 +1,13 @@
 <footer class="footer-section">
     <div class="footer__content content-container">
         <nav class="footer__nav" aria-label="Footer navigation">
-            <a [routerLink]="['/home']" class="footer__link">Home</a>
-            <a [routerLink]="['/chapters']" class="footer__link">All 18 Chapters</a>
+            <a routerLink="/" class="footer__link">Home</a>
+            <a routerLink="/chapters" class="footer__link">All 18 Chapters</a>
+        </nav>
+        <nav class="footer__chapters" aria-label="Chapters">
+            <a *ngFor="let chapter of chapters" class="footer__chapter-link" [routerLink]="['/chapter', chapter.number]">
+                {{ chapter.number }}
+            </a>
         </nav>
         <p class="footer__copy">
             &copy; {{currentYear}} Bhagavad Gita Online &mdash; Built by
