@@ -54,34 +54,16 @@ export class VerseDescriptionComponent implements OnInit, OnDestroy {
           return of(null);
         }
 
+        this.presentVerse(chapter, verse);
         return this.dataService.getVerse(chapter, verse).pipe(
-          catchError(() => {
-            this.markNotFound();
-            return of(null);
-          })
+          catchError(() => of(null))
         );
       })
     ).subscribe((res: GitaVerse) => {
-      if (!res || !res.verse_number) {
-        if (!this.isNotFound) {
-          this.markNotFound();
-        }
+      if (this.isNotFound || this.chapterNumber == null || this.verseNumber == null) {
         return;
       }
-      this.httpStatus.setStatus(200);
-      this.page = buildVersePageContent(res);
-      this.chapterNumber = res.chapter_number;
-      this.verseNumber = res.verse_number;
-      this.chapterLink = chapterPath(res.chapter_number);
-      this.setNavigation(res.chapter_number, res.verse_number);
-      this.breadcrumbs = [
-        { label: 'Bhagavad Gita', url: '/' },
-        { label: `Chapter ${res.chapter_number}`, url: this.chapterLink },
-        { label: `Verse ${res.verse_number}` }
-      ];
-      this.applySeo();
-      this.isNotFound = false;
-      this.isResponse = true;
+      this.presentVerse(this.chapterNumber, this.verseNumber, res && res.verse_number ? res : undefined);
     });
   }
 
@@ -97,6 +79,34 @@ export class VerseDescriptionComponent implements OnInit, OnDestroy {
     this.nextLink = next ? versePath(next.chapter, next.verse) : undefined;
     this.prevLabel = prev ? `Chapter ${prev.chapter} Verse ${prev.verse}` : '';
     this.nextLabel = next ? `Chapter ${next.chapter} Verse ${next.verse}` : '';
+  }
+
+  private presentVerse(chapter: number, verse: number, apiVerse?: GitaVerse): void {
+    const verseData: GitaVerse = apiVerse && apiVerse.verse_number
+      ? apiVerse
+      : {
+          chapter_number: chapter,
+          verse_number: verse,
+          text: '',
+          transliteration: '',
+          word_meanings: '',
+          translations: [],
+          commentaries: []
+        };
+    this.chapterNumber = verseData.chapter_number;
+    this.verseNumber = verseData.verse_number;
+    this.page = buildVersePageContent(verseData);
+    this.chapterLink = chapterPath(verseData.chapter_number);
+    this.setNavigation(verseData.chapter_number, verseData.verse_number);
+    this.breadcrumbs = [
+      { label: 'Bhagavad Gita', url: '/' },
+      { label: `Chapter ${verseData.chapter_number}`, url: this.chapterLink },
+      { label: `Verse ${verseData.verse_number}` }
+    ];
+    this.httpStatus.setStatus(200);
+    this.isNotFound = false;
+    this.isResponse = true;
+    this.applySeo();
   }
 
   private applySeo(): void {

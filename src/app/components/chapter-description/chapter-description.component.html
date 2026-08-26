@@ -76,7 +76,7 @@
         </nav>
     </section>
 
-    <div class="verses grid justify-center mt-4" *ngIf="isResponse && verses.length">
+    <div class="verses grid justify-center mt-4" *ngIf="isResponse && verses.length && verses[0]?.text">
         <article *ngFor="let verse of verses | paginate: { itemsPerPage: showPage, currentPage: selectedPage, totalItems: verses.length }"
                  class="verses__box flex flex-col shadow-md text-center rounded-md">
             <a [routerLink]="verseHref(verse.verse_number)" class="verses__box-link">
@@ -88,7 +88,7 @@
         </article>
     </div>
 
-    <div class="pagination w-full mt-12" *ngIf="isResponse && verses.length">
+    <div class="pagination w-full mt-12" *ngIf="isResponse && verses.length && verses[0]?.text">
         <pagination-controls (pageChange)="onPageChange($event)" previousLabel="" nextLabel=""></pagination-controls>
     </div>
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { BreadcrumbItem } from 'src/app/components/breadcrumbs/breadcrumbs.component';
-import { ALL_CHAPTERS, CHAPTER_META, ChapterMeta, isValidChapter, parsePositiveInt, versePath } from 'src/app/seo/gita.data';
+import { ALL_CHAPTERS, CHAPTER_META, ChapterMeta, isValidChapter, parsePositiveInt, VERSES_PER_CHAPTER, versePath } from 'src/app/seo/gita.data';
 import { formatSanskrit } from 'src/app/seo/verse-content';
 import { DataService } from 'src/app/services/data.service';
 import { HttpStatusService } from 'src/app/services/http-status.service';
@@ -66,35 +66,16 @@ export class ChapterDescriptionComponent implements OnInit, OnDestroy {
           this.markNotFound();
           return of(null);
         }
-        this.chapterMeta = CHAPTER_META[chapterId];
+        this.presentChapter(chapterId);
         return this.dataService.getChapter(chapterId).pipe(
-          catchError(() => {
-            this.markNotFound();
-            return of(null);
-          })
+          catchError(() => of(null))
         );
       })
     ).subscribe(response => {
-      if (!response) {
+      if (this.isNotFound || this.chapterID == null || !isValidChapter(this.chapterID)) {
         return;
       }
-      this.httpStatus.setStatus(200);
-      this.chapter = response;
-      this.chapterMeta = CHAPTER_META[response.chapter_number] || this.chapterMeta;
-      this.isChapterResponse = true;
-      this.relatedChapters = ALL_CHAPTERS.filter(item =>
-        item.number === response.chapter_number - 1
-        || item.number === response.chapter_number + 1
-        || (item.yogaPath === this.chapterMeta.yogaPath && item.number !== response.chapter_number)
-      ).filter((item, index, list) => list.findIndex(entry => entry.number === item.number) === index)
-        .slice(0, 4);
-      this.faqs = this.buildFaqs();
-      this.breadcrumbs = [
-        { label: 'Bhagavad Gita', url: '/' },
-        { label: 'Chapters', url: '/chapters' },
-        { label: `Chapter ${response.chapter_number}` }
-      ];
-      this.applySeo();
+      this.presentChapter(this.chapterID, response && response.chapter_number ? response : undefined);
     });
 
     this.activatedRoute.params.pipe(
@@ -107,10 +88,13 @@ export class ChapterDescriptionComponent implements OnInit, OnDestroy {
         return this.dataService.getAllVerses(chapterId).pipe(catchError(() => of([])));
       })
     ).subscribe(response => {
-      this.verses = (response || []).map(verse => {
+      const apiVerses = (response || []).map(verse => {
         verse.text = formatSanskrit(verse.text, verse.chapter_number);
         return verse;
       });
+      this.verses = apiVerses.length
+        ? apiVerses
+        : this.placeholderVerses(this.chapterID);
       this.isResponse = true;
     });
   }
@@ -140,6 +124,42 @@ export class ChapterDescriptionComponent implements OnInit, OnDestroy {
     if (event.key === 'Enter') {
       this.redirectToVerse(verse);
     }
+  }
+
+  private presentChapter(chapterId: number, response?: any): void {
+    const meta = CHAPTER_META[chapterId];
+    this.chapterID = chapterId;
+    this.chapterMeta = meta;
+    this.isNotFound = false;
+    this.httpStatus.setStatus(200);
+    this.chapter = response || {
+      chapter_number: chapterId,
+      name_translated: meta.nameTranslated,
+      verses_count: VERSES_PER_CHAPTER[chapterId],
+      chapter_summary: meta.teachings.join(' ')
+    };
+    this.relatedChapters = ALL_CHAPTERS.filter(item =>
+      item.number === chapterId - 1
+      || item.number === chapterId + 1
+      || (item.yogaPath === meta.yogaPath && item.number !== chapterId)
+    ).filter((item, index, list) => list.findIndex(entry => entry.number === item.number) === index)
+      .slice(0, 4);
+    this.faqs = this.buildFaqs();
+    this.breadcrumbs = [
+      { label: 'Bhagavad Gita', url: '/' },
+      { label: 'Chapters', url: '/chapters' },
+      { label: `Chapter ${chapterId}` }
+    ];
+    this.isChapterResponse = true;
+    this.applySeo();
+  }
+
+  private placeholderVerses(chapterId: number): Array<{ verse_number: number; text: string }> {
+    const count = VERSES_PER_CHAPTER[chapterId] || 0;
+    return Array.from({ length: count }, (_, index) => ({
+      verse_number: index + 1,
+      text: ''
+    }));
   }
 
   private applySeo(): void {

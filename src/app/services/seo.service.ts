@@ -37,7 +37,7 @@ export class SeoService {
     this.setLink('rel="next"', config.nextUrl);
 
     this.meta.updateTag({ name: 'description', content: config.description });
-    this.meta.updateTag({ name: 'robots', content: robots });
+    this.setRobots(robots);
     this.meta.updateTag({ name: 'author', content: 'Keval Vadhiya' });
     if (config.keywords) {
       this.meta.updateTag({ name: 'keywords', content: config.keywords });
@@ -139,6 +139,12 @@ export class SeoService {
         }
       }))
     };
+  }
+
+  private setRobots(content: string): void {
+    const tags = Array.from(this.dom.querySelectorAll('meta[name="robots"]'));
+    tags.slice(1).forEach(tag => tag.parentNode?.removeChild(tag));
+    this.meta.updateTag({ name: 'robots', content }, 'name="robots"');
   }
 
   private setCanonical(url: string): void {

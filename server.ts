@@ -45,7 +45,6 @@ export function app(): express.Express {
   });
 
   server.get('*', (req, res) => {
-    res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
     res.render(indexHtml, {
       req,
       res,
@@ -53,6 +52,17 @@ export function app(): express.Express {
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: SSR_RESPONSE, useValue: res }
       ]
+    }, (err, html) => {
+      if (err) {
+        res.status(500).type('text/plain').send('Server error');
+        return;
+      }
+      if (res.statusCode === 404) {
+        res.setHeader('Cache-Control', 'private, no-store, must-revalidate');
+      } else {
+        res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
+      }
+      res.send(html);
     });
   });
 
