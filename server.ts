@@ -60,7 +60,7 @@ export function app(): express.Express {
       if (res.statusCode === 404) {
         res.setHeader('Cache-Control', 'private, no-store, must-revalidate');
       } else {
-        res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=86400');
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       }
       res.send(html);
     });

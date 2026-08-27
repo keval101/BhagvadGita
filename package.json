@@ -9,7 +9,7 @@
     "test": "NODE_OPTIONS=--openssl-legacy-provider ng test",
     "dev:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:serve-ssr",
     "serve:ssr": "node dist/BhagvadGita/server/main.js",
-    "build:ssr": "NODE_OPTIONS=--openssl-legacy-provider ng build && ng run BhagvadGita:server",
+    "build:ssr": "rm -rf dist && NODE_OPTIONS=--openssl-legacy-provider ng build && node scripts/prepare-vercel.js && NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:server",
     "prerender": "NODE_OPTIONS=--openssl-legacy-provider ng run BhagvadGita:prerender",
     "seo:audit": "node scripts/seo-audit.js"
   },

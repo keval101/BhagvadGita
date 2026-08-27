@@ -2,7 +2,11 @@
   "version": 2,
   "name": "bhagavad-gita",
   "trailingSlash": false,
+  "buildCommand": "npm run build:ssr",
+  "outputDirectory": "dist/BhagvadGita/browser",
   "rewrites": [
+    { "source": "/", "destination": "/api" },
+    { "source": "/index.html", "destination": "/api" },
     { "source": "/(.*)", "destination": "/api" }
   ],
   "functions": {
@@ -12,12 +16,20 @@
   },
   "headers": [
     {
+      "source": "/",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "source": "/index.html",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
       "source": "/(.*).js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
     },
     {
       "source": "/(.*).css",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
     }
   ]
 }
