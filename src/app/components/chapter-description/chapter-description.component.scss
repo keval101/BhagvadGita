@@ -115,7 +115,18 @@
 
 .krishna-image {
     width: 350px;
-    height: fit-content
+    height: auto;
+    max-height: 467px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px;
+    flex-shrink: 0;
+
+    @screen md-max {
+        width: min(280px, 100%);
+        margin: 1.25rem auto 0;
+        display: block;
+    }
 }
 
 .chapter {

@@ -16,10 +16,10 @@
         </a>
 
         <article class="verse__card relative flex flex-col items-center rounded-sm p-10">
-            <img src="assets/krishna-arjuna.jpg"
-                 [alt]="'Krishna and Arjuna – ' + page.h1"
+            <img [src]="chapterImage()"
+                 [alt]="'Bhagavad Gita Chapter ' + page.chapter + ': ' + page.chapterMeta.nameTranslated"
                  class="verse__card-image"
-                 width="320" height="168">
+                 width="220" height="293">
 
             <header class="verse__header text-center">
                 <h1 class="verse__card-english-title primary-text-color mt-5 mb-2 font-semibold">

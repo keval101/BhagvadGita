@@ -316,3 +316,12 @@ export function versePath(chapter: number, verse: number): string {
 export function chapterPath(chapter: number): string {
   return `/chapter/${chapter}`;
 }
+
+export function chapterImagePath(chapter: number): string {
+  const padded = String(chapter).padStart(2, '0');
+  return `assets/chapters/chapter-${padded}.jpg`;
+}
+
+export function chapterImageUrl(chapter: number): string {
+  return `${SITE_ORIGIN}/${chapterImagePath(chapter)}`;
+}

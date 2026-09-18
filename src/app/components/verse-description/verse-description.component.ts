@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { BreadcrumbItem } from 'src/app/components/breadcrumbs/breadcrumbs.component';
-import { canonicalUrl, chapterPath, isValidVerse, nextVerseRef, parsePositiveInt, previousVerseRef, versePath } from 'src/app/seo/gita.data';
+import { canonicalUrl, chapterImagePath, chapterImageUrl, chapterPath, isValidVerse, nextVerseRef, parsePositiveInt, previousVerseRef, versePath } from 'src/app/seo/gita.data';
 import { buildVersePageContent, GitaVerse, VersePageContent } from 'src/app/seo/verse-content';
 import { DataService } from 'src/app/services/data.service';
 import { HttpStatusService } from 'src/app/services/http-status.service';
@@ -72,6 +72,10 @@ export class VerseDescriptionComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  chapterImage(): string {
+    return chapterImagePath(this.chapterNumber);
+  }
+
   private setNavigation(chapter: number, verse: number): void {
     const prev = previousVerseRef(chapter, verse);
     const next = nextVerseRef(chapter, verse);
@@ -134,6 +138,7 @@ export class VerseDescriptionComponent implements OnInit, OnDestroy {
       path,
       robots: 'index, follow',
       keywords: `Bhagavad Gita ${this.page.chapter}.${this.page.verse}, ${this.page.chapterMeta.nameTranslated}, ${this.page.topic}`,
+      image: chapterImageUrl(this.page.chapter),
       imageAlt: this.page.h1,
       prevUrl: this.prevLink ? canonicalUrl(this.prevLink) : undefined,
       nextUrl: this.nextLink ? canonicalUrl(this.nextLink) : undefined,

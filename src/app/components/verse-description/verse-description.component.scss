@@ -9,8 +9,12 @@
         }
 
         &-image {
-            width: 320px;
+            width: 220px;
             height: auto;
+            max-height: 293px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 6px;
             animation: faded 0.4s ease-in;
         }
 

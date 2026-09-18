@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { BreadcrumbItem } from 'src/app/components/breadcrumbs/breadcrumbs.component';
-import { ALL_CHAPTERS, CHAPTER_META, ChapterMeta, isValidChapter, parsePositiveInt, VERSES_PER_CHAPTER, versePath } from 'src/app/seo/gita.data';
+import { ALL_CHAPTERS, CHAPTER_META, ChapterMeta, chapterImagePath, chapterImageUrl, isValidChapter, parsePositiveInt, VERSES_PER_CHAPTER, versePath } from 'src/app/seo/gita.data';
 import { formatSanskrit } from 'src/app/seo/verse-content';
 import { DataService } from 'src/app/services/data.service';
 import { HttpStatusService } from 'src/app/services/http-status.service';
@@ -108,6 +108,10 @@ export class ChapterDescriptionComponent implements OnInit, OnDestroy {
     return versePath(this.chapterID, verseNumber);
   }
 
+  chapterImage(chapterId: number = this.chapterID): string {
+    return chapterImagePath(chapterId);
+  }
+
   onPageChange(pageNumber: number): void {
     this.selectedPage = pageNumber;
   }
@@ -171,6 +175,8 @@ export class ChapterDescriptionComponent implements OnInit, OnDestroy {
       description,
       path,
       robots: 'index, follow',
+      image: chapterImageUrl(this.chapter.chapter_number),
+      imageAlt: `Bhagavad Gita Chapter ${this.chapter.chapter_number}: ${this.chapter.name_translated} – ${this.chapterMeta.nameMeaning}`,
       keywords: `Bhagavad Gita Chapter ${this.chapter.chapter_number}, ${this.chapter.name_translated}, ${this.chapterMeta.nameMeaning}`,
       jsonLd: [
         this.seo.webPage({ name: title, description, path }),
