@@ -40,10 +40,10 @@
                     Bhagavad Gita Chapter {{ chapter.chapter_number }} has only {{ verses.length }} verses
                 </p>
             </div>
-            <img src="assets/krishna.jpg"
-                 [alt]="'Bhagavad Gita Chapter ' + chapter.chapter_number + ': ' + chapter.name_translated"
-                 class="krishna-image md:block md-max:hidden"
-                 width="350" height="350">
+            <img [src]="chapterImage()"
+                 [alt]="'Bhagavad Gita Chapter ' + chapter.chapter_number + ': ' + chapter.name_translated + ' – ' + chapterMeta?.nameMeaning"
+                 class="krishna-image"
+                 width="350" height="467">
         </div>
 
         <section class="chapter__panel" *ngIf="chapterMeta">
